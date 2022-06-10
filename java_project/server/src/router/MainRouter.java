@@ -76,7 +76,7 @@ public class MainRouter {
 			resultMember = memberService.login(member);
 			returnData = new NetworkData<Member>("member/login", resultMember);
 			break;
-		case "find":
+		case "find": // 아이디로 회원이 존재하는지 검색
 			resultMember = memberService.find(member);
 			returnData = new NetworkData<Member>("member/find", resultMember);
 			break;

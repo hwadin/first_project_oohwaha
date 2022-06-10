@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="9.0" layoutY="7.0" text="새 일정">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTitle" layoutX="10.0" layoutY="55.0" prefHeight="23.0" prefWidth="180.0" promptText="제목을 입력하세요." />
+      <Label layoutX="19.0" layoutY="34.0" text="일정 제목" />
+      <Label layoutX="19.0" layoutY="89.0" text="장소" />
+      <TextField fx:id="txtPlace" layoutX="10.0" layoutY="110.0" prefHeight="23.0" prefWidth="180.0" promptText="장소를 입력하세요.(선택)" />
+      <ComboBox fx:id="startTime" layoutX="10.0" layoutY="162.0" prefHeight="23.0" prefWidth="85.0" >
+      <items>
+            <FXCollections fx:factory ="observableArrayList">
+               <String fx:value="00:00"/>
+               <String fx:value="00:30"/>
+               <String fx:value="01:00"/>
+               <String fx:value="01:30"/>
+               <String fx:value="02:00"/>
+               <String fx:value="02:30"/>
+               <String fx:value="03:00"/>
+               <String fx:value="03:30"/>
+               <String fx:value="04:00"/>
+               <String fx:value="04:30"/>
+               <String fx:value="05:00"/>
+               <String fx:value="05:30"/>
+               <String fx:value="06:00"/>
+               <String fx:value="06:30"/>
+               <String fx:value="07:00"/>
+               <String fx:value="07:30"/>
+               <String fx:value="08:00"/>
+               <String fx:value="08:30"/>
+               <String fx:value="09:00"/>
+               <String fx:value="09:30"/>
+               <String fx:value="10:00"/>
+               <String fx:value="10:30"/>
+               <String fx:value="11:00"/>
+               <String fx:value="11:30"/>
+               <String fx:value="12:00"/>
+               <String fx:value="12:30"/>
+               <String fx:value="13:00"/>
+               <String fx:value="13:30"/>
+               <String fx:value="14:00"/>
+               <String fx:value="14:30"/>
+               <String fx:value="15:00"/>
+               <String fx:value="15:30"/>
+               <String fx:value="16:00"/>
+               <String fx:value="16:30"/>
+               <String fx:value="17:00"/>
+               <String fx:value="17:30"/>
+               <String fx:value="18:00"/>
+               <String fx:value="18:30"/>
+               <String fx:value="19:00"/>
+               <String fx:value="19:30"/>
+               <String fx:value="20:00"/>
+               <String fx:value="20:30"/>
+               <String fx:value="21:00"/>
+               <String fx:value="21:30"/>
+               <String fx:value="22:00"/>
+               <String fx:value="22:30"/>
+               <String fx:value="23:00"/>
+               <String fx:value="23:30"/>
+            </FXCollections>
+         </items>
+      </ComboBox>
+      
+      <Label layoutX="19.0" layoutY="141.0" text="시작 시각" />
+      <DatePicker fx:id="endDate" layoutX="10.0" layoutY="215.0" prefWidth="180.0" />
+      <Label layoutX="19.0" layoutY="193.0" text="종료일" />
+      <Label layoutX="115.0" layoutY="140.0" text="종료 시각" />
+      <ComboBox fx:id="endTime" layoutX="106.0" layoutY="161.0" prefHeight="23.0" prefWidth="85.0" >
+      <items>
+            <FXCollections fx:factory ="observableArrayList">
+               <String fx:value="00:00"/>
+               <String fx:value="00:30"/>
+               <String fx:value="01:00"/>
+               <String fx:value="01:30"/>
+               <String fx:value="02:00"/>
+               <String fx:value="02:30"/>
+               <String fx:value="03:00"/>
+               <String fx:value="03:30"/>
+               <String fx:value="04:00"/>
+               <String fx:value="04:30"/>
+               <String fx:value="05:00"/>
+               <String fx:value="05:30"/>
+               <String fx:value="06:00"/>
+               <String fx:value="06:30"/>
+               <String fx:value="07:00"/>
+               <String fx:value="07:30"/>
+               <String fx:value="08:00"/>
+               <String fx:value="08:30"/>
+               <String fx:value="09:00"/>
+               <String fx:value="09:30"/>
+               <String fx:value="10:00"/>
+               <String fx:value="10:30"/>
+               <String fx:value="11:00"/>
+               <String fx:value="11:30"/>
+               <String fx:value="12:00"/>
+               <String fx:value="12:30"/>
+               <String fx:value="13:00"/>
+               <String fx:value="13:30"/>
+               <String fx:value="14:00"/>
+               <String fx:value="14:30"/>
+               <String fx:value="15:00"/>
+               <String fx:value="15:30"/>
+               <String fx:value="16:00"/>
+               <String fx:value="16:30"/>
+               <String fx:value="17:00"/>
+               <String fx:value="17:30"/>
+               <String fx:value="18:00"/>
+               <String fx:value="18:30"/>
+               <String fx:value="19:00"/>
+               <String fx:value="19:30"/>
+               <String fx:value="20:00"/>
+               <String fx:value="20:30"/>
+               <String fx:value="21:00"/>
+               <String fx:value="21:30"/>
+               <String fx:value="22:00"/>
+               <String fx:value="22:30"/>
+               <String fx:value="23:00"/>
+               <String fx:value="23:30"/>
+            </FXCollections>
+         </items>
+      </ComboBox>
+      
+      <Button fx:id="btnAccept" layoutX="10.0" layoutY="256.0" mnemonicParsing="false" prefWidth="85.0" text="수락" />
+      <Button fx:id="btnCancel" layoutX="106.0" layoutY="256.0" mnemonicParsing="false" prefWidth="85.0" text="취소" />
+   </children>
+</AnchorPane>
