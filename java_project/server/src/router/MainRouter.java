@@ -92,6 +92,10 @@ public class MainRouter {
 			resultInt = memberService.delete(member);
 			returnData = new NetworkData<Integer>("member/delete", resultInt);
 			break;
+		case "frdList":
+			ArrayList<Member> list = memberService.frdList(member);
+			returnData = new NetworkData<ArrayList<Member>>("member/frdList", list);
+			break;
 		}
 		return returnData;
 	}
