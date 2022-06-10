@@ -2,11 +2,14 @@ package controller;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -33,7 +36,7 @@ public class MonthScheduleController implements Initializable {
 		String currentDate = new SimpleDateFormat("MM").format(cal.getTime());
 		System.out.println(currentDate);
 
-		int year = cal.get(Calendar.YEAR); // 올해
+		int year = cal.get(Calendar.YEAR - 1); // 올해
 		int month = cal.get(Calendar.MONTH); // 이번 달(0~11)
 		int dayMonth = cal.get(Calendar.DAY_OF_MONTH); // 이번 달의 오늘
 		int firstDay = cal.getActualMinimum(month); // 이번 달의 첫째 날
@@ -48,6 +51,30 @@ public class MonthScheduleController implements Initializable {
 		System.out.println("lastDay : " + lastDay);
 		System.out.println("주차 : " + weeks);
 		System.out.println("요일 : " + days);
+
+		ObservableList<Node> list = grid.getChildren();
+		System.out.println(list);
+
+		VBox[][] calForm = new VBox[5][7];
+		int num = 7;
+		for (int i = 0; i < calForm.length; i++) {
+			for (int j = 0; j < calForm[i].length; j++) {
+				calForm[i][j] = (VBox) list.get(num);
+				num++;
+			}
+		}
+		System.out.println(Arrays.deepToString(calForm));
+		System.out.println(calForm[weeks - 1][days - 1].getChildren());
+
+		// 오늘 날짜 생성
+		((Label) calForm[weeks - 1][days - 1].getChildren().get(0)).setText(Integer.toString(dayMonth));
+
+		int today = dayMonth;
+		for (int i = weeks - 2; i >= 0; i--) {
+			for (int j = days - 2; j >= 0; j--) {
+				((Label) calForm[i][j].getChildren().get(0)).setText(Integer.toString(--today));
+			}
+		}
 
 	}
 
