@@ -1,5 +1,7 @@
 package service;
 
+import java.util.ArrayList;
+
 import dao.IMemberDAO;
 import dao.MemberDAO;
 import vo.Member;
@@ -50,6 +52,13 @@ public class MemberService implements IMemberService {
 		System.out.println("memberService.delete() 진입");
 		int result = dao.delete(member);
 		return result;
+	}
+
+	@Override
+	public ArrayList<Member> frdList(Member member) {
+		System.out.println("memberService.frdList() 진입");
+		ArrayList<Member> list = dao.frdList(member);
+		return list;
 	}
 
 }

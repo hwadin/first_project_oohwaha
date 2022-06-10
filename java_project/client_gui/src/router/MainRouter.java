@@ -1,6 +1,7 @@
 package router;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import application.Main;
 import javafx.application.Platform;
@@ -9,12 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import network_dto.NetworkData;
+import service.MemberService;
 import vo.Member;
 
 public class MainRouter {
 	NetworkData<?> data;
 
 	public static Stage stage;
+
+	static MemberService memberService = new MemberService();
 
 	public NetworkData<?> route(NetworkData<?> data) {
 		String action = data.getAction();
@@ -30,11 +34,26 @@ public class MainRouter {
 				login(m);
 				break;
 			case "member/join":
-
 				break;
 			}
 		}
+		String actionClass = action.split("/")[0];
+		switch (actionClass) {
+		case "member":
+			memberRoute(data);
+			break;
+		}
 		return null;
+	}
+
+	private void memberRoute(NetworkData<?> data) {
+		String action = data.getAction().split("/")[1];
+		switch (action) {
+		case "frdList":
+			ArrayList<Member> frdList = (ArrayList<Member>) data.getV();
+			memberService.frdList(frdList);
+			break;
+		}
 	}
 
 	private void login(Member member) {

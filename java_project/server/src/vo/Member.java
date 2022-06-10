@@ -38,6 +38,12 @@ public class Member implements Serializable {
 		this.id = id;
 	}
 
+	public Member(int no, String id, String name) {
+		this.no = no;
+		this.id = id;
+		this.name = name;
+	}
+
 	// 전체 회원 정보 생성자
 	public Member(String id, String pw, String name, int age, String addr, boolean isOwner) {
 		this.id = id;

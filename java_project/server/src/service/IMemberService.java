@@ -1,5 +1,7 @@
 package service;
 
+import java.util.ArrayList;
+
 import vo.Member;
 
 // MemberDAO 활용한 Member 관련 기능
@@ -16,4 +18,6 @@ public interface IMemberService {
 	int update(Member member);
 
 	int delete(Member member);
+
+	ArrayList<Member> frdList(Member member);
 }

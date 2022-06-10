@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import vo.Member;
 
 // DBHelper 사용해서 DB 접근해서 CRUD(Create, Read, Update, Delete)기능
@@ -16,5 +18,7 @@ public interface IMemberDAO {
 	int update(Member member);
 
 	int delete(Member member);
+
+	ArrayList<Member> frdList(Member member);
 
 }

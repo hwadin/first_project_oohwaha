@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import util.DBHelper;
 import vo.Member;
@@ -129,6 +130,27 @@ public class MemberDAO implements IMemberDAO {
 			DBHelper.close(pstmt);
 		}
 		return result;
+	}
+
+	@Override
+	public ArrayList<Member> frdList(Member member) {
+		ArrayList<Member> frdList = new ArrayList<>();
+		String sql = "SELECT  frd.friend, mem.id, mem.name FROM frndlist frd, member mem where frd.friend = mem.no and member=?;";
+		conn = DBHelper.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getNo());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(3));
+				frdList.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, pstmt);
+		}
+		return frdList;
 	}
 
 }
