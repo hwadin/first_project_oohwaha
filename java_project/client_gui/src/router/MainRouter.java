@@ -6,7 +6,9 @@ import application.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import network_dto.NetworkData;
 import vo.Member;
@@ -32,6 +34,15 @@ public class MainRouter {
 			case "member/join":
 
 				break;
+			case "member/find":
+			Popup pop = new Popup();
+			
+			Label lbl = new Label();
+			lbl.setText("존재하는 아이디입니다.");
+			pop.getContent().add(lbl);
+			Platform.runLater(()->{
+				pop.show(stage);	
+			});
 			}
 		}
 		return null;
