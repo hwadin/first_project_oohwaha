@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="978.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <VBox alignment="CENTER" layoutX="439.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Label" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
