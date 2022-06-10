@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Popup;
 import network_dto.NetworkData;
 import service.MemberService;
 import vo.Member;
@@ -23,10 +24,7 @@ public class UserMainController implements Initializable {
 	private Label txtTitle, userName;
 
 	@FXML
-	private Button btnCalendar;
-
-	@FXML
-	private Button btnFriend;
+	private Button btnCalendar, btnFriend, btnSearch;
 
 	@FXML
 	private BorderPane borderPane;
@@ -54,6 +52,16 @@ public class UserMainController implements Initializable {
 			MemberService.setTarget(borderPane);
 			Connector.send(new NetworkData<Member>("member/frdList", Main.loginMember));
 		});
+
+		btnSearch.setOnAction(ev -> {
+			Popup pop = new Popup();
+			AnchorPane searchIcon = (AnchorPane) Main.sceneLoader.load(SceneLoader.SEARCH_PATH);
+			System.out.println(pop.getContent());
+			pop.getContent().add(searchIcon);
+			pop.setAutoHide(true);
+			pop.show(MainController.stage);
+		});
+
 	}
 
 }
