@@ -9,10 +9,15 @@ import application.SceneLoader;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+
+import javafx.scene.control.Label;
+
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import network_dto.NetworkData;
 import service.MemberService;
@@ -43,6 +48,15 @@ public class MainRouter {
 				break;
 			case "member/join":
 				break;
+			case "member/find":
+			Popup pop = new Popup();
+			
+			Label lbl = new Label();
+			lbl.setText("존재하는 아이디입니다.");
+			pop.getContent().add(lbl);
+			Platform.runLater(()->{
+				pop.show(stage);	
+			});
 			}
 		} else {
 			String actionClass = action.split("/")[0];

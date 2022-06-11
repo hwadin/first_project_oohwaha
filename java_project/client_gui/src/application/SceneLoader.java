@@ -13,6 +13,7 @@ public class SceneLoader {
 	public final static String M_SCHEDULE_PATH = "../view/MonthSchedule.fxml";
 	public final static String UPDATE_SCHE_PATH = "../view/UpdateSchedule.fxml";
 
+	public final static String SEARCH_PATH = "../view/SearchIcon.fxml";
 	public final static String F_LIST_PATH = "../view/FriendList.fxml";
 
 	public final static String M_SCHE_DETAIL_PATH = "../view/MonthDetail.fxml";

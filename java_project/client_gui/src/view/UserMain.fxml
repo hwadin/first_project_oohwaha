@@ -18,7 +18,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button layoutX="757.0" layoutY="16.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="btnSearch" layoutX="757.0" layoutY="16.0" mnemonicParsing="false" text="Button" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="818.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
             <Label id="userName" fx:id="userName" layoutX="865.0" layoutY="18.0" text="userName">
                <font>
