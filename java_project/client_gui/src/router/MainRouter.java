@@ -13,7 +13,9 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import network_dto.NetworkData;
 import service.MemberService;
+import service.ScheduleService;
 import vo.Member;
+import vo.Schedule;
 
 public class MainRouter {
 	NetworkData<?> data;
@@ -21,6 +23,7 @@ public class MainRouter {
 	public static Stage stage;
 
 	static MemberService memberService = new MemberService();
+	static ScheduleService scheduleService = new ScheduleService();
 
 	public NetworkData<?> route(NetworkData<?> data) {
 		String action = data.getAction();
@@ -53,8 +56,21 @@ public class MainRouter {
 		case "member":
 			memberRoute(data);
 			break;
+		case "schedule":
+			scheduleRoute(data);
+			break;
 		}
 		return null;
+	}
+
+	private void scheduleRoute(NetworkData<?> data) {
+		String action = data.getAction().split("/")[1];
+		switch (action) {
+		case "find":
+			ArrayList<Schedule> scheList = (ArrayList<Schedule>) data.getV();
+			scheduleService.getAllSchedule(scheList);
+			break;
+		}
 	}
 
 	private void memberRoute(NetworkData<?> data) {

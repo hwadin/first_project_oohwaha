@@ -25,11 +25,13 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 		int result = 0;
 		conn = DBHelper.getConnection();
 		try {
-			String sql = "INSERT INTO member_schedule(member_no,start_time,end_time) VALUES(?,?,?)";
+			String sql = "INSERT INTO member_schedule(member,start_time,end_time,title,detail) VALUES(?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, schedule.getMember());
-			pstmt.setString(2, schedule.getStart_time());
-			pstmt.setString(3, schedule.getEnd_time());
+			pstmt.setTimestamp(2, schedule.getStart_time());
+			pstmt.setTimestamp(3, schedule.getEnd_time());
+			pstmt.setString(4, schedule.getTitle());
+			pstmt.setString(5, schedule.getDetail());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
@@ -43,15 +45,15 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 	public ArrayList<Schedule> find(int member_no) {
 		ArrayList<Schedule> list = new ArrayList<>();
 		Schedule schedule = null;
-		String sql = "SELECT * FROM member_schedule WHERE member_no= " + member_no;
+		String sql = "SELECT * FROM member_schedule WHERE member= " + member_no;
 		conn = DBHelper.getConnection();
 
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				schedule = new Schedule(rs.getInt("no"), rs.getInt("member"), rs.getString("start_time"),
-						rs.getString("end_time"));
+				schedule = new Schedule(rs.getInt("no"), rs.getInt("member"), rs.getTimestamp("start_time"),
+						rs.getTimestamp("end_time"), rs.getString("title"), rs.getString("detail"));
 				list.add(schedule);
 			}
 		} catch (SQLException e) {
@@ -66,14 +68,16 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 	public int update(Schedule schedule) {
 		int result = 0;
 
-		String sql = "UPDATE member_schedule SET start_time = ?, emd_time =? WHERE no = ?";
+		String sql = "UPDATE member_schedule SET start_time = ?, end_time =?, title=?, detail=? WHERE no = ?";
 
 		conn = DBHelper.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, schedule.getStart_time());
-			pstmt.setString(2, schedule.getEnd_time());
-			pstmt.setInt(3, schedule.getNo());
+			pstmt.setTimestamp(1, schedule.getStart_time());
+			pstmt.setTimestamp(2, schedule.getEnd_time());
+			pstmt.setString(3, schedule.getTitle());
+			pstmt.setString(4, schedule.getDetail());
+			pstmt.setInt(5, schedule.getNo());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,7 +91,7 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 	public int delete(Schedule schedule) {
 		int result = 0;
 		conn = DBHelper.getConnection();
-		String sql = "DELETE FROM member_schedule WHERE no = " + schedule;
+		String sql = "DELETE FROM member_schedule WHERE no = " + schedule.getNo();
 		try {
 			stmt = conn.createStatement();
 			result = stmt.executeUpdate(sql);
