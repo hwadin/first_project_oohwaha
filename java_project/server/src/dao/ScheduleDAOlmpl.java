@@ -51,7 +51,7 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
+			while (rs.next()) {
 				schedule = new Schedule(rs.getInt("no"), rs.getInt("member"), rs.getTimestamp("start_time"),
 						rs.getTimestamp("end_time"), rs.getString("title"), rs.getString("detail"));
 				list.add(schedule);
@@ -62,6 +62,26 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 			DBHelper.close(rs, stmt);
 		}
 		return list;
+	}
+
+	public Schedule findByNo(int no) {
+		Schedule schedule = null;
+		String sql = "SELECT * FROM member_schedule WHERE no= " + no;
+		conn = DBHelper.getConnection();
+
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				schedule = new Schedule(rs.getInt("no"), rs.getInt("member"), rs.getTimestamp("start_time"),
+						rs.getTimestamp("end_time"), rs.getString("title"), rs.getString("detail"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, stmt);
+		}
+		return schedule;
 	}
 
 	@Override

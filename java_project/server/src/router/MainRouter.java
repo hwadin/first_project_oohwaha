@@ -140,7 +140,6 @@ public class MainRouter {
 		Schedule schedule = null;
 		Member member = null;
 		ArrayList<Schedule> s = null;
-		System.out.println();
 		String action = data.getAction().split("/")[1];
 		System.out.println("scheduleRouter 진입 || action : " + action);
 		if (data.getV() instanceof Schedule) {
@@ -158,17 +157,17 @@ public class MainRouter {
 			s = scheduleService.find(member.getNo());
 			returnData = new NetworkData<ArrayList<Schedule>>("schedule/find", s);
 			break;
-//		case "findByDate": // 스케줄 검색
-//			s = scheduleService.findByDate(member.getNo());
-//			returnData = new NetworkData<ArrayList<Schedule>>("schedule/find", s);
-//			break;
+		case "findByNo": // 스케줄 번호로 검색
+			schedule = scheduleService.findByNo(schedule.getNo());
+			returnData = new NetworkData<Schedule>("schedule/findByNo", schedule);
+			break;
 		case "update": // 스케줄 수정
 			resultInt = scheduleService.update(schedule);
 			returnData = new NetworkData<Integer>("schedule/update", resultInt);
 			break;
 		case "delete": // 스케줄 삭제
 			resultInt = scheduleService.delete(schedule);
-			returnData = new NetworkData<Integer>("member/delete", resultInt);
+			returnData = new NetworkData<Integer>("schedule/delete", resultInt);
 			break;
 		}
 

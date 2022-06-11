@@ -28,6 +28,7 @@ public class DBHelper {
 
 				Class.forName(driver);
 				conn = DriverManager.getConnection(url, user, password);
+				conn.setAutoCommit(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

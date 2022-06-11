@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 public class Schedule implements Serializable {
 
-	private static final long serialVersionUID = 4894236748562299117L;
+	private static final long serialVersionUID = 342539071942934970L;
 
 	// 스케쥴 번호
 	private int no;
@@ -34,6 +34,14 @@ public class Schedule implements Serializable {
 		this.member = member;
 		this.start_time = start_time;
 		this.end_time = end_time;
+	}
+
+	public Schedule(int member, Timestamp start_time, Timestamp end_time, String title, String detail) {
+		this.member = member;
+		this.start_time = start_time;
+		this.end_time = end_time;
+		this.title = title;
+		this.detail = detail;
 	}
 
 	public Schedule(int no, int member, Timestamp start_time, Timestamp end_time, String title, String detail) {
@@ -97,8 +105,8 @@ public class Schedule implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Schedule [no=" + no + ", member_no=" + member + ", start_time=" + start_time + ", end_time=" + end_time
-				+ "]";
+		return "Schedule [no=" + no + ", member=" + member + ", start_time=" + start_time + ", end_time=" + end_time
+				+ ", title=" + title + ", detail=" + detail + "]";
 	}
 
 }
