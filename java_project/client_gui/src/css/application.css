@@ -1,1 +1,38 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+*{
+	-fx-font-family:'SLEI Gothic TTF', 'Arial Black';
+}
+
+#btnCal{
+	-fx-pref-width:30;
+	-fx-pref-height:30;
+	-fx-background-image:url(resources/icons/calendar1.png);
+	-fx-background-size:100%;
+}
+
+#btnFrd{
+	-fx-pref-width:30;
+	-fx-pref-height:30;
+	-fx-background-image:url(resources/icons/friends.png);
+	-fx-background-size:100%;
+}
+
+#btnRsrv{
+	-fx-pref-width:30;
+	-fx-pref-height:30;
+	-fx-background-image:url(resources/icons/search.png);
+	-fx-background-size:100%;
+}
+
+#btnRsrvDetail{
+	-fx-pref-width:30;
+	-fx-pref-height:30;
+	-fx-background-image:url(resources/icons/calendar1.png);
+	-fx-background-size:100%;
+}
+
+#btnCnfg{
+	-fx-pref-width:30;
+	-fx-pref-height:30;
+	-fx-background-image:url(resources/icons/setting4.png);
+	-fx-background-size:100%;
+}

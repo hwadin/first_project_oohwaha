@@ -77,10 +77,17 @@ public class MainRouter {
 	private void scheduleRoute(NetworkData<?> data) {
 		String action = data.getAction().split("/")[1];
 		int result = 0;
+		BorderPane borderPane;
+		AnchorPane monthCal;
 		switch (action) {
 		case "find":
 			ArrayList<Schedule> scheList = (ArrayList<Schedule>) data.getV();
 			scheduleService.getAllSchedule(scheList);
+			borderPane = (BorderPane) ScheduleService.border;
+			monthCal = (AnchorPane) ScheduleService.calendar;
+			Platform.runLater(() -> {
+				borderPane.setCenter(monthCal);
+			});
 			break;
 		case "save":
 			result = (Integer) data.getV();
@@ -102,8 +109,8 @@ public class MainRouter {
 			result = (Integer) data.getV();
 			if (result == 1) {
 //				Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
-				AnchorPane monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
-				BorderPane borderPane = (BorderPane) ScheduleService.border;
+				monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
+				borderPane = (BorderPane) ScheduleService.border;
 				ScheduleService.setCalendar(monthCal);
 				Platform.runLater(() -> {
 					borderPane.setCenter(monthCal);
@@ -124,10 +131,10 @@ public class MainRouter {
 					alert.setHeaderText("일정 삭제 완료.");
 					alert.show();
 					alert.setOnCloseRequest(ev -> {
-						AnchorPane monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
-						BorderPane borderPane = (BorderPane) ScheduleService.border;
-						ScheduleService.setCalendar(monthCal);
-						borderPane.setCenter(monthCal);
+						AnchorPane exmonthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
+						BorderPane exborderPane = (BorderPane) ScheduleService.border;
+						ScheduleService.setCalendar(exmonthCal);
+						exborderPane.setCenter(exmonthCal);
 					});
 				});
 
