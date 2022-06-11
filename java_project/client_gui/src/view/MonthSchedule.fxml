@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -36,7 +37,7 @@
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="목" textAlignment="CENTER" GridPane.columnIndex="4" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="금" textAlignment="CENTER" GridPane.columnIndex="5" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="토" textAlignment="CENTER" GridPane.columnIndex="6" />
-            <VBox fx:id="box01" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="1">
+            <VBox fx:id="box01" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl01" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -47,8 +48,11 @@
                <padding>
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </VBox>
-            <VBox fx:id="box02" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox fx:id="box02" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl02" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -60,7 +64,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box03" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <VBox fx:id="box03" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl03" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -72,7 +76,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box04" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <VBox fx:id="box04" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl04" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -84,7 +88,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box05" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <VBox fx:id="box05" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl05" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -96,7 +100,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box06" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <VBox fx:id="box06" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl06" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -108,7 +112,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box07" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <VBox fx:id="box07" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lbl07" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -120,7 +124,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box08" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="2">
+            <VBox fx:id="box08" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl08" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -132,7 +136,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box09" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <VBox fx:id="box09" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl09" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -144,7 +148,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box10" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <VBox fx:id="box10" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl10" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -156,7 +160,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box11" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <VBox fx:id="box11" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl11" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -168,7 +172,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box12" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <VBox fx:id="box12" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl12" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -180,7 +184,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box13" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+            <VBox fx:id="box13" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl13" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -192,7 +196,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box14" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <VBox fx:id="box14" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <children>
                   <Label fx:id="lbl14" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -204,7 +208,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box15" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="3">
+            <VBox fx:id="box15" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl15" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -216,7 +220,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box16" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <VBox fx:id="box16" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl16" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -228,7 +232,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box17" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <VBox fx:id="box17" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl17" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -240,7 +244,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box18" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <VBox fx:id="box18" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl18" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -252,7 +256,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box19" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <VBox fx:id="box19" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl19" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -264,7 +268,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box20" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+            <VBox fx:id="box20" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl20" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -276,7 +280,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box21" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <VBox fx:id="box21" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                <children>
                   <Label fx:id="lbl21" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -288,7 +292,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box22" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="4">
+            <VBox fx:id="box22" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl22" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -300,7 +304,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box23" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <VBox fx:id="box23" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl23" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -312,7 +316,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box24" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <VBox fx:id="box24" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl24" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -324,7 +328,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box25" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <VBox fx:id="box25" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl25" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -336,7 +340,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box26" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <VBox fx:id="box26" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl26" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -348,7 +352,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box27" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+            <VBox fx:id="box27" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl27" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -360,7 +364,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box28" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <VBox fx:id="box28" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lbl28" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -372,7 +376,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box29" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="5">
+            <VBox fx:id="box29" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl29" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -384,7 +388,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box30" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <VBox fx:id="box30" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl30" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -396,7 +400,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box31" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <VBox fx:id="box31" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl31" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -408,7 +412,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box32" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <VBox fx:id="box32" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl32" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -420,7 +424,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box33" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+            <VBox fx:id="box33" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl33" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -432,7 +436,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box34" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+            <VBox fx:id="box34" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl34" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -444,7 +448,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box35" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+            <VBox fx:id="box35" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                <children>
                   <Label fx:id="lbl35" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -456,7 +460,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box36" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="6">
+            <VBox fx:id="box36" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl36" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -468,7 +472,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box37" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <VBox fx:id="box37" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl37" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -480,7 +484,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box38" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <VBox fx:id="box38" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl38" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -492,7 +496,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box39" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <VBox fx:id="box39" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl39" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -504,7 +508,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box40" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+            <VBox fx:id="box40" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl40" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -516,7 +520,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box41" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
+            <VBox fx:id="box41" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl41" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -528,7 +532,7 @@
                   <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
                </padding>
             </VBox>
-            <VBox fx:id="box42" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
+            <VBox fx:id="box42" maxHeight="52.0" prefHeight="52.0" prefWidth="100.0" spacing="1.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
                <children>
                   <Label fx:id="lbl42" prefHeight="15.0" prefWidth="120.0">
                      <VBox.margin>
@@ -541,6 +545,9 @@
                </padding>
             </VBox>
          </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </GridPane>
       <Label layoutX="27.0" layoutY="24.0" text="월간 일정">
          <font>

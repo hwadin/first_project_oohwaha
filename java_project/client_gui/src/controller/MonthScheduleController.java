@@ -1,6 +1,8 @@
 package controller;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -92,20 +95,38 @@ public class MonthScheduleController implements Initializable {
 
 				TableView<Schedule> table = (TableView) monthDetail.getChildren().get(1);
 
-				TableColumn<Schedule, ?> tColumnStart = table.getColumns().get(0);
+				TableColumn<Schedule, ?> tColumnNo = table.getColumns().get(0);
+				tColumnNo.setCellValueFactory(new PropertyValueFactory<>("no"));
+
+				TableColumn<Schedule, ?> tColumnStart = table.getColumns().get(1);
 				tColumnStart.setCellValueFactory(new PropertyValueFactory<>("start_time"));
 
-				TableColumn<Schedule, ?> tColumnTitle = table.getColumns().get(1);
+				TableColumn<Schedule, ?> tColumnTitle = table.getColumns().get(2);
 				tColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
 
 				ObservableList<Schedule> tableList = FXCollections.observableArrayList();
 
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
-//				System.out.println(year + "-" + month+1 + "-" + ((Label) v.getChildren().get(0)).getText());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				for (Schedule s : memberSchedule) {
-					if (sdf.format(s.getStart_time())
-							.equals(year + "-" + (month + 1) + "-" + ((Label) v.getChildren().get(0)).getText()))
-						tableList.add(s);
+					String startDate = sdf.format(s.getStart_time());
+					Timestamp endDate = s.getEnd_time();
+					String title = s.getTitle();
+					String detail = s.getDetail();
+					String day = ((Label) v.getChildren().get(0)).getText();
+					Date vDate;
+					try {
+						vDate = sdf.parse(year + "-" + (month + 1) + "-" + day);
+						if ((vDate.after(sdf.parse(startDate)) || vDate.equals(sdf.parse(startDate)))
+								&& vDate.before(endDate)) {
+							tableList.add(s);
+						}
+						Timestamp thatDay = new Timestamp(vDate.getTime());
+						Label today = (Label) monthDetail.lookup("#today");
+						today.setText(sdf.format(vDate));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+
 				}
 				table.setItems(tableList);
 
@@ -136,6 +157,13 @@ public class MonthScheduleController implements Initializable {
 		}
 		for (VBox v : boxList) {
 			v.setDisable(false);
+			ObservableList<Node> vList = v.getChildren();
+			if (vList.size() > 1) {
+				Label tmp = (Label) vList.get(0);
+				vList.clear();
+				vList.add(tmp);
+			}
+			v.setMaxHeight(52);
 		}
 
 		year = cal.get(Calendar.YEAR); // 올해

@@ -2,13 +2,12 @@ package service;
 
 import java.util.ArrayList;
 
-import dao.IScheduleDAO;
 import dao.ScheduleDAOlmpl;
 import vo.Schedule;
 
 public class ScheduleService implements IScheduleService {
 
-	IScheduleDAO dao;
+	ScheduleDAOlmpl dao;
 
 	public ScheduleService() {
 		dao = new ScheduleDAOlmpl();
@@ -26,10 +25,10 @@ public class ScheduleService implements IScheduleService {
 		return array;
 	}
 
-//	public ArrayList<Schedule> findByDate(int member_no) {
-//		ArrayList<Schedule> array = dao.findByDate(member_no);
-//		return array;
-//	}
+	public Schedule findByNo(int no) {
+		Schedule schedule = dao.findByNo(no);
+		return schedule;
+	}
 
 	@Override
 	public int update(Schedule schedule) {
