@@ -32,23 +32,49 @@ public class ScheduleService {
 	}
 
 	public void getAllSchedule(ArrayList<Schedule> data) {
-		SimpleDateFormat sdf = new SimpleDateFormat("d");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyM-d");
 		BorderPane borderPane = (BorderPane) border;
-		System.out.println(data);
+
+//		String year = ((Label) calendar.lookup("#year")).getText();
+		String month = ((Label) calendar.lookup("#year")).getText().split(" ")[0]
+				+ ((Label) calendar.lookup("#month")).getText();
+		System.out.println(month);
+
 		MonthScheduleController.setMemberSchedule(data);
 		for (Schedule s : data) {
 			Timestamp startDate = s.getStart_time();
 			Timestamp endDate = s.getEnd_time();
 			String title = s.getTitle();
 			String detail = s.getDetail();
-			for (VBox b : boxList) {
 
-				if (((Label) b.getChildren().get(0)).getText().equals(sdf.format(startDate))) {
-					Label lbl = new Label();
-					lbl.setText(title);
-					Platform.runLater(() -> {
-						b.getChildren().add(lbl);
-					});
+			if (sdf.format(startDate).startsWith(month)) {
+				if (sdf.format(endDate).startsWith(month)) {
+					for (VBox b : boxList) {
+						String day = ((Label) b.getChildren().get(0)).getText();
+						System.out.println(day);
+						System.out.println(sdf.format(startDate).split("-")[1]);
+						System.out.println(sdf.format(endDate).split("-")[1]);
+						if (day.equals("")
+								&& Integer.parseInt(day) >= Integer.parseInt(sdf.format(startDate).split("-")[1])
+								|| Integer.parseInt(day) <= Integer.parseInt(sdf.format(endDate).split("-")[1])) {
+							Label lbl = new Label();
+							lbl.setText(title);
+							Platform.runLater(() -> {
+								b.getChildren().add(lbl);
+							});
+						}
+					}
+				} else {
+					for (VBox b : boxList) {
+						String day = ((Label) b.getChildren().get(0)).getText();
+						if (Integer.parseInt(day) >= Integer.parseInt(sdf.format(startDate).split("-")[1])) {
+							Label lbl = new Label();
+							lbl.setText(title);
+							Platform.runLater(() -> {
+								b.getChildren().add(lbl);
+							});
+						}
+					}
 				}
 			}
 		}
