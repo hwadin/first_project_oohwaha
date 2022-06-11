@@ -18,7 +18,6 @@ public class Main extends Application {
 	public static Connector conn;
 
 	public Main() {
-		System.out.println("111");
 		conn = new Connector();
 		conn.connect();
 		sceneLoader = new SceneLoader();

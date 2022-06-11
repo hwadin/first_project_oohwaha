@@ -1,22 +1,33 @@
 package controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import application.Connector;
 import application.Main;
 import application.SceneLoader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import network_dto.NetworkData;
+import service.ScheduleService;
+import vo.Member;
+import vo.Schedule;
 
 public class MonthScheduleController implements Initializable {
 
@@ -39,6 +50,15 @@ public class MonthScheduleController implements Initializable {
 
 	Calendar cal;
 	ArrayList<VBox> boxList;
+
+	int year;
+	int month;
+
+	public static ArrayList<Schedule> memberSchedule;
+
+	public static void setMemberSchedule(ArrayList<Schedule> memberSchedule) {
+		MonthScheduleController.memberSchedule = memberSchedule;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -70,6 +90,25 @@ public class MonthScheduleController implements Initializable {
 
 				AnchorPane monthDetail = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHE_DETAIL_PATH);
 
+				TableView<Schedule> table = (TableView) monthDetail.getChildren().get(1);
+
+				TableColumn<Schedule, ?> tColumnStart = table.getColumns().get(0);
+				tColumnStart.setCellValueFactory(new PropertyValueFactory<>("start_time"));
+
+				TableColumn<Schedule, ?> tColumnTitle = table.getColumns().get(1);
+				tColumnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+				ObservableList<Schedule> tableList = FXCollections.observableArrayList();
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
+//				System.out.println(year + "-" + month+1 + "-" + ((Label) v.getChildren().get(0)).getText());
+				for (Schedule s : memberSchedule) {
+					if (sdf.format(s.getStart_time())
+							.equals(year + "-" + (month + 1) + "-" + ((Label) v.getChildren().get(0)).getText()))
+						tableList.add(s);
+				}
+				table.setItems(tableList);
+
 				pop.getContent().add(monthDetail);
 				pop.setAutoHide(true);
 				pop.setX(ev.getScreenX());
@@ -77,6 +116,7 @@ public class MonthScheduleController implements Initializable {
 				pop.show(MainController.stage);
 			});
 		}
+
 	}
 
 	void initColorCal() {
@@ -98,8 +138,8 @@ public class MonthScheduleController implements Initializable {
 			v.setDisable(false);
 		}
 
-		int year = cal.get(Calendar.YEAR); // 올해
-		int month = cal.get(Calendar.MONTH); // 이번 달(0~11)
+		year = cal.get(Calendar.YEAR); // 올해
+		month = cal.get(Calendar.MONTH); // 이번 달(0~11)
 		int dayMonth = cal.get(Calendar.DAY_OF_MONTH); // 이번 달의 오늘
 
 		int firstDay = cal.getActualMinimum(Calendar.DAY_OF_MONTH); // 이번 달의 첫째 날
@@ -122,6 +162,10 @@ public class MonthScheduleController implements Initializable {
 		}
 
 		// DB에서 스케쥴 읽어오게 요청 후 받아온 데이터에 기반하여 스케쥴 항목 추가
+
+		ScheduleService.setBoxList(boxList);
+
+		Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
 	};
 
 }

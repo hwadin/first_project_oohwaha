@@ -13,7 +13,7 @@ import vo.Member;
 
 public class MemberService {
 
-	static Parent target;
+	public static Parent target;
 
 	public static void setTarget(Parent t) {
 		target = t;

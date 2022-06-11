@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import network_dto.NetworkData;
 import service.MemberService;
+import service.ScheduleService;
 import vo.Member;
 
 public class UserMainController implements Initializable {
@@ -46,6 +47,8 @@ public class UserMainController implements Initializable {
 		btnCalendar.setOnAction(event -> {
 			AnchorPane monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
 			borderPane.setCenter(monthCal);
+			ScheduleService.setCalendar(monthCal);
+			ScheduleService.setTarget(borderPane);
 		});
 
 		btnFriend.setOnAction(event -> {

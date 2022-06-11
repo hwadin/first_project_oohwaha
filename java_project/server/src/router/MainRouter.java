@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import network_dto.NetworkData;
 import service.IMemberService;
 import service.IReservationService;
-import service.IScheduleService;
 import service.MemberService;
 import service.ReservationService;
 import service.ScheduleService;
@@ -16,7 +15,7 @@ import vo.Schedule;
 public class MainRouter {
 	static IMemberService memberService = new MemberService();
 	static IReservationService reservationService = new ReservationService();
-	static IScheduleService scheduleService = new ScheduleService();
+	static ScheduleService scheduleService = new ScheduleService();
 
 	public static NetworkData<?> route(NetworkData<?> data) {
 		NetworkData<?> returnData = null;
@@ -137,10 +136,10 @@ public class MainRouter {
 
 	private static NetworkData<?> scheduleRoute(NetworkData<?> data) {
 		NetworkData<?> returnData = null;
-		Schedule resultSchedule = null;
 		Integer resultInt = null;
 		Schedule schedule = null;
 		Member member = null;
+		ArrayList<Schedule> s = null;
 		System.out.println();
 		String action = data.getAction().split("/")[1];
 		System.out.println("scheduleRouter 진입 || action : " + action);
@@ -156,10 +155,13 @@ public class MainRouter {
 			returnData = new NetworkData<Integer>("schedule/save", resultInt);
 			break;
 		case "find": // 스케줄 검색
-			ArrayList<Schedule> s = scheduleService.find(member.getNo());
-			returnData = new NetworkData<Schedule>("schedule/find", resultSchedule);
+			s = scheduleService.find(member.getNo());
+			returnData = new NetworkData<ArrayList<Schedule>>("schedule/find", s);
 			break;
-
+//		case "findByDate": // 스케줄 검색
+//			s = scheduleService.findByDate(member.getNo());
+//			returnData = new NetworkData<ArrayList<Schedule>>("schedule/find", s);
+//			break;
 		case "update": // 스케줄 수정
 			resultInt = scheduleService.update(schedule);
 			returnData = new NetworkData<Integer>("schedule/update", resultInt);
