@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import network_dto.NetworkData;
+import router.MainRouter;
 import vo.Member;
 
 public class MainController implements Initializable {
@@ -59,7 +60,9 @@ public class MainController implements Initializable {
 		btnJoin.setOnAction((event) -> {
 			Scene scene = new Scene((AnchorPane) Main.sceneLoader.load(SceneLoader.JOIN_PATH));
 			System.out.println(stage);
+			MainRouter.stage = stage;
 			stage.setScene(scene);
+			
 		});
 
 	}
