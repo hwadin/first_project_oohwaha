@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" fx:controller="controller.UserMainController" prefHeight="600.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="978.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserMainController">
    <top>
       <AnchorPane prefHeight="55.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +20,7 @@
             </Label>
             <Button layoutX="757.0" layoutY="16.0" mnemonicParsing="false" text="Button" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="818.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="userName" id="userName" layoutX="865.0" layoutY="18.0" text="userName">
+            <Label id="userName" fx:id="userName" layoutX="865.0" layoutY="18.0" text="userName">
                <font>
                   <Font size="16.0" />
                </font>
@@ -31,11 +31,11 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="50.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnCalendar" mnemonicParsing="false" text="Cal" />
-            <Button fx:id="btnFriend" mnemonicParsing="false" text="Frd" />
-            <Button mnemonicParsing="false" text="Rsrv" />
-            <Button mnemonicParsing="false" text="Rsrv" />
-            <Button mnemonicParsing="false" text="Cnfg" />
+            <Button id="btnCal" fx:id="btnCalendar" mnemonicParsing="false" text="" />
+            <Button id="btnFrd" fx:id="btnFriend" mnemonicParsing="false" text="" />
+            <Button id="btnRsrv" mnemonicParsing="false" text="" />
+            <Button id="btnRsrvDetail" mnemonicParsing="false" text="Rsrv" />
+            <Button id="btnCnfg" mnemonicParsing="false" text="" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -77,6 +77,71 @@
                 <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="146.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="일" textAlignment="CENTER" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="월" textAlignment="CENTER" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="화" textAlignment="CENTER" GridPane.columnIndex="2" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="수" textAlignment="CENTER" GridPane.columnIndex="3" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="목" textAlignment="CENTER" GridPane.columnIndex="4" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="금" textAlignment="CENTER" GridPane.columnIndex="5" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="15.0" prefWidth="185.0" text="토" textAlignment="CENTER" GridPane.columnIndex="6" />
+                  <VBox fx:id="box1" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl01" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="box2" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl02" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="box3" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl03" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="box4" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl04" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="box5" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl05" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="box6" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl06" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="box7" prefHeight="200.0" prefWidth="100.0" spacing="2.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="lbl07" prefHeight="15.0" prefWidth="120.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                     </padding>
+                  </VBox>
+               </children>
             </GridPane>
             <TableView layoutX="605.0" layoutY="34.0" prefHeight="390.0" prefWidth="213.0">
               <columns>
@@ -84,12 +149,12 @@
                 <TableColumn prefWidth="134.0" text="C2" />
               </columns>
             </TableView>
-            <Label layoutX="14.0" layoutY="220.0" text="예약 내역">
+            <Label layoutX="14.0" layoutY="220.0" text="주간 일정">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="605.0" layoutY="5.0" text="예약 내역">
+            <Label layoutX="605.0" layoutY="5.0" text="추천 카페">
                <font>
                   <Font size="15.0" />
                </font>

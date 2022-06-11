@@ -40,8 +40,7 @@ public class ScheduleService {
 
 	public void getAllSchedule(ArrayList<Schedule> data) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
-		BorderPane borderPane = (BorderPane) border;
-//		calendar = (Parent) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
+//		BorderPane borderPane = (BorderPane) border;
 		String month = ((Label) calendar.lookup("#year")).getText().split(" ")[0] + "-"
 				+ ((Label) calendar.lookup("#month")).getText();
 
@@ -99,10 +98,7 @@ public class ScheduleService {
 				}
 			}
 		});
-		AnchorPane monthCal = (AnchorPane) calendar;
-		Platform.runLater(() -> {
-			borderPane.setCenter(monthCal);
-		});
+
 	}
 
 	public void getDetailSchedule(Schedule schedule) {
@@ -127,4 +123,9 @@ public class ScheduleService {
 			borderPane.setCenter(updateSchedule);
 		});
 	}
+
+	public void getWeekSchedule(ArrayList<Schedule> data) {
+
+	}
+
 }
