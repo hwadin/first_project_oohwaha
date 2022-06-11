@@ -547,12 +547,12 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="lblMonth" alignment="CENTER" contentDisplay="CENTER" layoutX="379.0" layoutY="48.0" prefHeight="42.0" prefWidth="129.0" text="month" textAlignment="CENTER">
+      <Label id="month" fx:id="lblMonth" alignment="CENTER" contentDisplay="CENTER" layoutX="379.0" layoutY="48.0" prefHeight="42.0" prefWidth="129.0" text="month" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Label fx:id="lblYear" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="749.0" layoutY="29.0" prefHeight="15.0" prefWidth="108.0" text="year" textAlignment="CENTER">
+      <Label id="year" fx:id="lblYear" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="749.0" layoutY="29.0" prefHeight="15.0" prefWidth="108.0" text="year" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>
