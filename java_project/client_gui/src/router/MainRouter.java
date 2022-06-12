@@ -12,10 +12,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+<<<<<<< HEAD
+import javafx.scene.control.TextArea;
+
+=======
 import javafx.scene.layout.AnchorPane;
+>>>>>>> refs/remotes/master/master
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import network_dto.NetworkData;
 import service.MemberService;
 import service.ScheduleService;
@@ -27,8 +33,8 @@ public class MainRouter {
 
 	public static Stage stage;
 
-	static MemberService memberService = new MemberService();
-	static ScheduleService scheduleService = new ScheduleService();
+	public static MemberService memberService = new MemberService();
+	public static ScheduleService scheduleService = new ScheduleService();
 
 	public NetworkData<?> route(NetworkData<?> data) {
 		String action = data.getAction();
@@ -44,8 +50,13 @@ public class MainRouter {
 				login(m);
 				break;
 			case "member/join":
+				join(m);
 				break;
 			case "member/find":
+<<<<<<< HEAD
+				find(m);
+				break;
+=======
 				Popup pop = new Popup();
 
 				Label lbl = new Label();
@@ -54,6 +65,7 @@ public class MainRouter {
 				Platform.runLater(() -> {
 					pop.show(stage);
 				});
+>>>>>>> refs/remotes/master/master
 			}
 		} else {
 			String actionClass = action.split("/")[0];
@@ -161,22 +173,82 @@ public class MainRouter {
 			memberService.frdList(frdList);
 			break;
 
+		case "update":
+			if (data.getV() != null) {
+				Member member = (Member) data.getV();
+				memberService.update(member);
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("회원 정보 수정 실패");
+				alert.setHeaderText("수정에 실패했습니다.");
+				alert.show();
+			}
+			break;
+		case "delete":
+
+			memberService.delete(data);
+
+
 		case "findId":
 			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
 			memberService.findId(findID);
+
 			break;
 		}
 	}
 
 	private void login(Member member) {
-		Main.loginMember = member;
-		try {
-			BorderPane userMain = FXMLLoader.load(getClass().getResource("../view/UserMain.fxml"));
+		if (member != null) {
+			Main.loginMember = member;
+			try {
+				BorderPane userMain = FXMLLoader.load(getClass().getResource("../view/UserMain.fxml"));
+				Platform.runLater(() -> {
+					stage.setScene(new Scene(userMain));
+				});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
 			Platform.runLater(() -> {
-				stage.setScene(new Scene(userMain));
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("로그인 실패");
+				alert.setHeaderText("계정 정보를 확인하세요.");
+				alert.show();
 			});
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
+	}
+	
+	private void join(Member m) {
+		if(m==null) {
+			Platform.runLater(()->{
+    			Alert alert=new Alert(AlertType.INFORMATION);
+    			alert.setHeaderText("성공적으로 회원가입되었습니다.");
+    			alert.show();	
+    		});
+		}else {
+			Platform.runLater(()->{
+    			Alert alert=new Alert(AlertType.INFORMATION);
+    			alert.setHeaderText("이미 존재하는 회원입니다.");
+    			alert.show();	
+		});
+	}
+}
+	private void find(Member member) {
+		if(member==null) {	
+    		Platform.runLater(()->{
+    			Alert alert=new Alert(AlertType.INFORMATION);
+    			alert.setHeaderText("사용가능한 아이디입니다.");
+    			alert.show();	
+    		});
+			
+		}else{
+			Platform.runLater(()->{
+				Alert alert=new Alert(AlertType.ERROR);
+				alert.setHeaderText("중복된 아이디입니다.");
+				alert.show();	
+			});
+				
+		}
+
 	}
 }
