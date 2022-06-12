@@ -64,4 +64,11 @@ public class MemberService implements IMemberService {
 		return list;
 	}
 
+	@Override
+	public ArrayList<Member> findId(Member member) {
+		System.out.println("memberService.findId() 진입");
+		ArrayList<Member> list = dao.findId(member);
+		return list;
+	}
+
 }

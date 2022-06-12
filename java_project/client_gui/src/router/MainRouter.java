@@ -160,6 +160,7 @@ public class MainRouter {
 			ArrayList<Member> frdList = (ArrayList<Member>) data.getV();
 			memberService.frdList(frdList);
 			break;
+
 		case "update":
 			if (data.getV() != null) {
 				Member member = (Member) data.getV();
@@ -174,6 +175,12 @@ public class MainRouter {
 		case "delete":
 
 			memberService.delete(data);
+
+
+		case "findId":
+			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
+			memberService.findId(findID);
+
 			break;
 		}
 	}

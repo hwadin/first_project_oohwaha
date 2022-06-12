@@ -95,6 +95,11 @@ public class MainRouter {
 			ArrayList<Member> list = memberService.frdList(member);
 			returnData = new NetworkData<ArrayList<Member>>("member/frdList", list);
 			break;
+
+		case "findId":
+			ArrayList<Member> list2 = memberService.findId(member);
+			returnData = new NetworkData<ArrayList<Member>>("member/findId", list2);
+			break;
 		}
 		return returnData;
 	}
