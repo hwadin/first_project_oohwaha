@@ -15,10 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 import network_dto.NetworkData;
 import service.MemberService;
 import service.ScheduleService;
@@ -28,6 +28,9 @@ public class UserMainController implements Initializable {
 
 	@FXML
 	private Label txtTitle, userName;
+
+	@FXML
+	private TextField txtId;
 
 	@FXML
 	private Button btnCalendar, btnFriend, btnSearch;
@@ -79,12 +82,9 @@ public class UserMainController implements Initializable {
 		});
 
 		btnSearch.setOnAction(ev -> {
-			Popup pop = new Popup();
 			AnchorPane searchIcon = (AnchorPane) Main.sceneLoader.load(SceneLoader.SEARCH_PATH);
-			System.out.println(pop.getContent());
-			pop.getContent().add(searchIcon);
-			pop.setAutoHide(true);
-			pop.show(MainController.stage);
+			MemberService.setTarget(searchIcon);
+			Connector.send(new NetworkData<Member>("member/findId", new Member(txtId.getText())));
 		});
 
 	}

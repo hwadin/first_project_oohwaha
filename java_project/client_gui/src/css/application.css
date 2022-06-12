@@ -36,3 +36,21 @@
 	-fx-background-image:url(resources/icons/setting4.png);
 	-fx-background-size:100%;
 }
+
+#btnSearch{
+	-fx-pref-width:23;
+	-fx-pref-height:23;
+	-fx-background-image:url(resources/icons/search3.png);
+	-fx-background-size:90%;
+	-fx-background-repeat:no-repeat;
+}
+
+#btnFrdAdd{
+	-fx-pref-width:25;
+	-fx-pref-height:25;
+	-fx-background-image:url(resources/icons/friends5.png);
+	-fx-background-size:100%;
+	-fx-background-repeat:no-repeat;
+}
+
+

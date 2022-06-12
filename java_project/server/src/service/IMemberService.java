@@ -20,4 +20,6 @@ public interface IMemberService {
 	int delete(Member member);
 
 	ArrayList<Member> frdList(Member member);
+
+	ArrayList<Member> findId(Member member);
 }
