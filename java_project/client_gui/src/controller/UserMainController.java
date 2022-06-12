@@ -110,6 +110,7 @@ public class UserMainController implements Initializable {
 			ScheduleService.setCalendar(updateMem);
 			ScheduleService.setTarget(borderPane);
 			borderPane.setCenter(updateMem);
+
 		});
 
 	}
