@@ -1,6 +1,7 @@
 package vo;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Member implements Serializable {
 
@@ -126,6 +127,22 @@ public class Member implements Serializable {
 	public String toString() {
 		return "MemberVO [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", age=" + age + ", addr=" + addr
 				+ ", isOwner=" + isOwner + "]";
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Member) {
+			Member m = (Member) o;
+			if (m.getNo() == this.no) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(no);
 	}
 
 }

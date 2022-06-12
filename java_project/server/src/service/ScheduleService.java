@@ -30,6 +30,11 @@ public class ScheduleService implements IScheduleService {
 		return schedule;
 	}
 
+	public ArrayList<Schedule> findWeek(int member_no) {
+		ArrayList<Schedule> array = dao.findWeek(member_no);
+		return array;
+	}
+
 	@Override
 	public int update(Schedule schedule) {
 		int u = dao.update(schedule);

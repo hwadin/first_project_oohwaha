@@ -64,6 +64,30 @@ public class ScheduleDAOlmpl implements IScheduleDAO {
 		return list;
 	}
 
+	public ArrayList<Schedule> findWeek(int member_no) {
+		ArrayList<Schedule> list = new ArrayList<>();
+		Schedule schedule = null;
+		String sql = "select * from member_schedule "
+				+ "where ((start_time between date_add(curdate(), interval -dayofweek(curdate())+1 day) and date_add(curdate(), interval 7-dayofweek(curdate()) day)) "
+				+ " or (end_time between date_add(curdate(), interval -dayofweek(curdate())+1 day) and date_add(curdate(), interval 7-dayofweek(curdate()) day))) "
+				+ "and member = " + member_no;
+		conn = DBHelper.getConnection();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				schedule = new Schedule(rs.getInt("no"), rs.getInt("member"), rs.getTimestamp("start_time"),
+						rs.getTimestamp("end_time"), rs.getString("title"), rs.getString("detail"));
+				list.add(schedule);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, stmt);
+		}
+		return list;
+	}
+
 	public Schedule findByNo(int no) {
 		Schedule schedule = null;
 		String sql = "SELECT * FROM member_schedule WHERE no= " + no;
