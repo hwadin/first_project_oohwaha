@@ -27,8 +27,8 @@ public class MainRouter {
 
 	public static Stage stage;
 
-	static MemberService memberService = new MemberService();
-	static ScheduleService scheduleService = new ScheduleService();
+	public static MemberService memberService = new MemberService();
+	public static ScheduleService scheduleService = new ScheduleService();
 
 	public NetworkData<?> route(NetworkData<?> data) {
 		String action = data.getAction();
@@ -160,18 +160,42 @@ public class MainRouter {
 			ArrayList<Member> frdList = (ArrayList<Member>) data.getV();
 			memberService.frdList(frdList);
 			break;
+		case "update":
+			if (data.getV() != null) {
+				Member member = (Member) data.getV();
+				memberService.update(member);
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("회원 정보 수정 실패");
+				alert.setHeaderText("수정에 실패했습니다.");
+				alert.show();
+			}
+			break;
+		case "delete":
+
+			memberService.delete(data);
+			break;
 		}
 	}
 
 	private void login(Member member) {
-		Main.loginMember = member;
-		try {
-			BorderPane userMain = FXMLLoader.load(getClass().getResource("../view/UserMain.fxml"));
+		if (member != null) {
+			Main.loginMember = member;
+			try {
+				BorderPane userMain = FXMLLoader.load(getClass().getResource("../view/UserMain.fxml"));
+				Platform.runLater(() -> {
+					stage.setScene(new Scene(userMain));
+				});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
 			Platform.runLater(() -> {
-				stage.setScene(new Scene(userMain));
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("로그인 실패");
+				alert.setHeaderText("계정 정보를 확인하세요.");
+				alert.show();
 			});
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }

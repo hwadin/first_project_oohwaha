@@ -13,6 +13,7 @@ import application.SceneLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -30,7 +31,7 @@ public class UserMainController implements Initializable {
 	private Label txtTitle, userName;
 
 	@FXML
-	private Button btnCalendar, btnFriend, btnSearch;
+	private Button btnCalendar, btnFriend, btnSearch, btnConfig;
 
 	@FXML
 	private BorderPane borderPane;
@@ -46,6 +47,16 @@ public class UserMainController implements Initializable {
 
 	Calendar cal;
 	ArrayList<VBox> boxList;
+
+	private static Node prevPage;
+
+	public static Node getPrevPage() {
+		return prevPage;
+	}
+
+	public static void setPrevPage(Node node) {
+		UserMainController.prevPage = node;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -84,6 +95,14 @@ public class UserMainController implements Initializable {
 			pop.getContent().add(searchIcon);
 			pop.setAutoHide(true);
 			pop.show(MainController.stage);
+		});
+
+		btnConfig.setOnAction(ev -> {
+			setPrevPage(borderPane.getCenter());
+			AnchorPane updateMem = (AnchorPane) Main.sceneLoader.load(SceneLoader.UPDATE_PATH);
+			ScheduleService.setCalendar(updateMem);
+			ScheduleService.setTarget(borderPane);
+			borderPane.setCenter(updateMem);
 		});
 
 	}

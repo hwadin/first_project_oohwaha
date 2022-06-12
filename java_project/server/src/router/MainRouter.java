@@ -84,8 +84,8 @@ public class MainRouter {
 			returnData = new NetworkData<Integer>("member/join", resultInt);
 			break;
 		case "update":
-			resultInt = memberService.update(member);
-			returnData = new NetworkData<Integer>("member/update", resultInt);
+			resultMember = memberService.update(member);
+			returnData = new NetworkData<Member>("member/update", resultMember);
 			break;
 		case "delete":
 			resultInt = memberService.delete(member);

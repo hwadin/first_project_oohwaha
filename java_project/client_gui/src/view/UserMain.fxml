@@ -35,7 +35,7 @@
             <Button id="btnFrd" fx:id="btnFriend" mnemonicParsing="false" text="" />
             <Button id="btnRsrv" mnemonicParsing="false" text="" />
             <Button id="btnRsrvDetail" mnemonicParsing="false" text="Rsrv" />
-            <Button id="btnCnfg" mnemonicParsing="false" text="" />
+            <Button id="btnCnfg" fx:id="btnConfig" mnemonicParsing="false" text="" />
          </children>
          <BorderPane.margin>
             <Insets />
