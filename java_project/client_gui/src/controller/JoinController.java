@@ -8,6 +8,7 @@ import application.Main;
 import application.SceneLoader;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -17,11 +18,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Popup;
+import javafx.stage.Window;
 import network_dto.NetworkData;
 import vo.Member;
 
@@ -64,7 +68,9 @@ public class JoinController implements Initializable {
 	
 	 //아이디 중복 체크
 	idcheck.setOnAction(event->{
+		
 		idcheck();
+		handlePopup();
 //		alt("아이디중복알림"," 중복된아이디입니다. 다시시도해주세요 :)",AlertType.ERROR);
 	});
 	
@@ -77,14 +83,14 @@ public class JoinController implements Initializable {
 	
 	}// initialize END 
 	
-	public void alt(String title, String content, AlertType alt) {
-	      Alert alert = new Alert(alt);
-	      alert.setTitle(title);
-	      alert.setHeaderText(null);
-	      alert.getDialogPane().setGraphic(null);
-	      alert.setContentText(content);
-	      alert.show();
-	   }
+//	public void alt(String title, String content, AlertType alt) {
+//	      Alert alert = new Alert(alt);
+//	      alert.setTitle(title);
+//	      alert.setHeaderText(null);
+//	      alert.getDialogPane().setGraphic(null);
+//	      alert.setContentText(content);
+//	      alert.show();
+//	   }
 	
 	public void idcheck() {
 		
@@ -96,5 +102,32 @@ public class JoinController implements Initializable {
 		Connector.send(new NetworkData<Member>("member/find", new Member(id.getText())));
 		
 	}
-	
+	public void handlePopup(){
+		
+		Popup popup = new Popup();
+		TextArea TextArea = new TextArea("이창은 팝업 창 입니다.");
+        if(popup.isShowing()){
+            popup.hide();
+        }else {
+            final Window window = idcheck.getScene().getWindow();
+            popup.setWidth(100);
+            popup.setHeight(300);
+
+            final double x = window.getX()
+                    + idcheck.localToScene(0, 0).getX()
+                    + idcheck.getScene().getX()
+                    ;
+            final double y = window.getY()
+                    + idcheck.localToScene(0, 0).getY()
+                    + idcheck.getScene().getY()
+                    + idcheck.getHeight();
+
+            popup.getContent().clear();
+            popup.getContent().addAll(TextArea);
+            popup.show(window, x, y);
+        }
+    }
 }
+
+	
+

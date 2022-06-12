@@ -28,7 +28,7 @@
          </font>
       </Label>
       <TextField fx:id="id" alignment="CENTER" layoutX="380.0" layoutY="170.0" prefHeight="23.0" prefWidth="235.0" />
-      <Button fx:id="idcheck" alignment="CENTER" layoutX="631.0" layoutY="169.0"  text="중복체크" />
+      <Button fx:id="idcheck" alignment="CENTER" layoutX="631.0" layoutY="169.0"  onAction="#handlePopup" text="중복체크" />
       <Label alignment="CENTER" layoutX="299.0" layoutY="218.0" text="비밀번호">
          <font>
             <Font size="15.0" />

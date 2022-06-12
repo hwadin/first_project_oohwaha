@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -37,6 +38,7 @@ public class MainRouter {
 			case "member/find":
 			Popup pop = new Popup();
 			
+			
 			Label lbl = new Label();
 			lbl.setText("존재하는 아이디입니다.");
 			pop.getContent().add(lbl);
@@ -52,6 +54,18 @@ public class MainRouter {
 		Main.loginMember = member;
 		try {
 			BorderPane userMain = FXMLLoader.load(getClass().getResource("../view/UserMain.fxml"));
+			Platform.runLater(() -> {
+				stage.setScene(new Scene(userMain));
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void find(Member member) {
+		Main.loginMember= member;
+		try {
+			AnchorPane join = FXMLLoader.load(getClass().getResource("../view/Join.fxml"));
 			Platform.runLater(() -> {
 				stage.setScene(new Scene(userMain));
 			});
