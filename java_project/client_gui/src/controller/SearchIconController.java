@@ -1,13 +1,16 @@
 package controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.Connector;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 
 public class SearchIconController implements Initializable {
 
@@ -24,9 +27,12 @@ public class SearchIconController implements Initializable {
 			alert.setHeaderText("친구 추가 요청");
 			alert.setContentText("검색한 친구를 친구 목록에 추가하시겠습니까 ?");
 
-			alert.showAndWait();
-
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK) {
+				Connector.send(new NetworkData<Member>())
+			} else {
+				alert.close();
+			}
 		});
 	}
-
 }

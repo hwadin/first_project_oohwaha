@@ -83,14 +83,10 @@ public class UserMainController implements Initializable {
 
 		btnSearch.setOnAction(ev -> {
 			AnchorPane searchIcon = (AnchorPane) Main.sceneLoader.load(SceneLoader.SEARCH_PATH);
-<<<<<<< HEAD
+
 			MemberService.setTarget(searchIcon);
 			Connector.send(new NetworkData<Member>("member/findId", new Member(txtId.getText())));
-=======
-			pop.getContent().add(searchIcon);
-			pop.setAutoHide(true);
-			pop.show(MainController.stage);
->>>>>>> refs/heads/master
+
 		});
 
 	}
