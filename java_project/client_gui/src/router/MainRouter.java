@@ -160,6 +160,11 @@ public class MainRouter {
 			ArrayList<Member> frdList = (ArrayList<Member>) data.getV();
 			memberService.frdList(frdList);
 			break;
+
+		case "findId":
+			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
+			memberService.findId(findID);
+			break;
 		}
 	}
 

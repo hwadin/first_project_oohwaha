@@ -21,4 +21,6 @@ public interface IMemberDAO {
 
 	ArrayList<Member> frdList(Member member);
 
+	ArrayList<Member> findId(Member member);
+
 }
