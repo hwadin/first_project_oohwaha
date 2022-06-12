@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import application.Main;
@@ -105,7 +106,7 @@ public class ScheduleService {
 		BorderPane borderPane = (BorderPane) border;
 		AnchorPane updateSchedule = (AnchorPane) Main.sceneLoader.load(SceneLoader.UPDATE_SCHE_PATH);
 		// 업데이트 스케쥴 창에 데이터 채워넣기
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 		Label scheNo = (Label) updateSchedule.lookup("#scheNo");
 		TextField start_time = (TextField) updateSchedule.lookup("#start_time");
@@ -125,7 +126,52 @@ public class ScheduleService {
 	}
 
 	public void getWeekSchedule(ArrayList<Schedule> data) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+		for (Schedule s : data) {
+			String startDate = sdf.format(s.getStart_time());
+			Timestamp endDate = s.getEnd_time();
+			String title = s.getTitle();
+			String detail = s.getDetail();
+
+			Date today = new Date();
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(today);
+			cal.add(Calendar.DATE, -cal.get(Calendar.DAY_OF_WEEK) + 1);
+			for (VBox b : boxList) {
+
+				try {
+					Date vDate = cal.getTime();
+					if ((vDate.after(sdf.parse(startDate)) || vDate.equals(sdf.parse(startDate)))
+							&& vDate.before(endDate)) {
+						Label lbl = new Label();
+
+						lbl.setText(s.getTitle());
+
+						Platform.runLater(() -> {
+							b.getChildren().add(lbl);
+						});
+
+					}
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				cal.add(Calendar.DATE, 1);
+			}
+		}
+//		Platform.runLater(() -> {
+//			for (VBox b : boxList) {
+//				ObservableList<Node> bList = b.getChildren();
+//				if (bList.size() > 3) {
+//					Label tmp1 = (Label) bList.get(0);
+//					Label tmp2 = (Label) bList.get(1);
+//					bList.clear();
+//					bList.add(tmp1);
+//					bList.add(tmp2);
+//					bList.add(new Label("..."));
+//				}
+//			}
+//		});
 	}
 
 }

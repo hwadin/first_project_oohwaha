@@ -192,7 +192,6 @@ public class MonthScheduleController implements Initializable {
 		// DB에서 스케쥴 읽어오게 요청 후 받아온 데이터에 기반하여 스케쥴 항목 추가
 
 		ScheduleService.setBoxList(boxList);
-
 		Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
 	};
 

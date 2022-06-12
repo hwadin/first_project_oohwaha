@@ -63,8 +63,6 @@ public class UpdateScheduleController implements Initializable {
 				String detail = this.detail.getText();
 				Timestamp startDate = new Timestamp(sdf.parse(start_time.getText()).getTime());
 				Timestamp endDate = new Timestamp(sdf.parse(end_time.getText()).getTime());
-				System.out.println(startDate);
-				System.out.println(endDate);
 				if (newStartDate.getValue() != null && newEndDate.getValue() != null) {
 					startDate = new Timestamp(
 							sdf.parse(newStartDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " "

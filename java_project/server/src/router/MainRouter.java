@@ -161,6 +161,10 @@ public class MainRouter {
 			schedule = scheduleService.findByNo(schedule.getNo());
 			returnData = new NetworkData<Schedule>("schedule/findByNo", schedule);
 			break;
+		case "findWeek":
+			s = scheduleService.findWeek(member.getNo());
+			returnData = new NetworkData<ArrayList<Schedule>>("schedule/findWeek", s);
+			break;
 		case "update": // 스케줄 수정
 			resultInt = scheduleService.update(schedule);
 			returnData = new NetworkData<Integer>("schedule/update", resultInt);

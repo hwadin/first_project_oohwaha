@@ -66,9 +66,9 @@ public class UserMainController implements Initializable {
 
 		btnCalendar.setOnAction(event -> {
 			AnchorPane monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
-			borderPane.setCenter(monthCal);
 			ScheduleService.setCalendar(monthCal);
 			ScheduleService.setTarget(borderPane);
+			borderPane.setCenter(monthCal);
 		});
 
 		btnFriend.setOnAction(event -> {
@@ -81,7 +81,6 @@ public class UserMainController implements Initializable {
 		btnSearch.setOnAction(ev -> {
 			Popup pop = new Popup();
 			AnchorPane searchIcon = (AnchorPane) Main.sceneLoader.load(SceneLoader.SEARCH_PATH);
-			System.out.println(pop.getContent());
 			pop.getContent().add(searchIcon);
 			pop.setAutoHide(true);
 			pop.show(MainController.stage);
@@ -104,18 +103,11 @@ public class UserMainController implements Initializable {
 
 		boxList.get(days - 1).setStyle("-fx-background-color:rgba(255,129,129,0.5);");
 
-		int index = 0;
-		for (int i = firstDay; i <= lastDay; i++) {
-			lblList.get(index).setText(Integer.toString(i));
-			index++;
-
-		}
-
 		// DB에서 스케쥴 읽어오게 요청 후 받아온 데이터에 기반하여 스케쥴 항목 추가
 
-//		ScheduleService.setBoxList(boxList);
-
-//		Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
+		ScheduleService.setBoxList(boxList);
+		ScheduleService.setTarget(borderPane);
+		Connector.send(new NetworkData<Member>("schedule/findWeek", Main.loginMember));
 	};
 
 }
