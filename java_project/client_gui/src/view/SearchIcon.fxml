@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-
 <AnchorPane
-fx:controller="controller.SearchIconController"
- xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+ prefHeight="31.0" prefWidth="202.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchIconController" stylesheets="@../css/application.css">
    <children>
-      <ListView prefHeight="250.0" prefWidth="400.0" >
+      <ListView prefHeight="25.0" prefWidth="136.0">
       	<items>
       	</items>
       </ListView>
+      <Button fx:id="btnFrdAdd" layoutX="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="26.0" text="친구추가">
+         <padding>
+            <Insets left="2.0" right="2.0" />
+         </padding></Button>
    </children>
 </AnchorPane>

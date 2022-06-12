@@ -94,7 +94,7 @@ public class MemberDAO implements IMemberDAO {
 	}
 
 	@Override
-	public int update(Member member) {
+	public Member update(Member member) {
 		int result = 0;
 		conn = DBHelper.getConnection();
 		String query = "update member set pw=?, age=?, addr=? where id=?";
@@ -111,7 +111,10 @@ public class MemberDAO implements IMemberDAO {
 		} finally {
 			DBHelper.close(pstmt);
 		}
-		return result;
+		if (result == 1) {
+			return member;
+		}
+		return null;
 	}
 
 	@Override
@@ -135,7 +138,7 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public ArrayList<Member> frdList(Member member) {
 		ArrayList<Member> frdList = new ArrayList<>();
-		String sql = "SELECT  frd.friend, mem.id, mem.name FROM frndlist frd, member mem where frd.friend = mem.no and member=?;";
+		String sql = "SELECT  frd.friend, mem.id, mem.name FROM frndlist frd, member mem where frd.friend = mem.no and member=? AND frd.is_invited = true;";
 		conn = DBHelper.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -151,6 +154,27 @@ public class MemberDAO implements IMemberDAO {
 			DBHelper.close(rs, pstmt);
 		}
 		return frdList;
+	}
+
+	@Override
+	public ArrayList<Member> findId(Member member) {
+		ArrayList<Member> findId = new ArrayList<>();
+		String sql = "SELECT no,id FROM member WHERE id = ?";
+		try {
+			conn = DBHelper.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				member = new Member(rs.getInt(1), rs.getString(2));
+				findId.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, pstmt);
+		}
+		return findId;
 	}
 
 }

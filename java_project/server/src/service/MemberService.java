@@ -41,10 +41,13 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
-	public int update(Member member) {
+	public Member update(Member member) {
 		System.out.println("memberService.update() 진입");
-		int result = dao.update(member);
-		return result;
+		Member m = dao.update(member);
+		if (m != null) {
+			return m;
+		}
+		return null;
 	}
 
 	@Override
@@ -58,6 +61,13 @@ public class MemberService implements IMemberService {
 	public ArrayList<Member> frdList(Member member) {
 		System.out.println("memberService.frdList() 진입");
 		ArrayList<Member> list = dao.frdList(member);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Member> findId(Member member) {
+		System.out.println("memberService.findId() 진입");
+		ArrayList<Member> list = dao.findId(member);
 		return list;
 	}
 

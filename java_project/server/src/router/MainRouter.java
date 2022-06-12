@@ -84,8 +84,8 @@ public class MainRouter {
 			returnData = new NetworkData<Integer>("member/join", resultInt);
 			break;
 		case "update":
-			resultInt = memberService.update(member);
-			returnData = new NetworkData<Integer>("member/update", resultInt);
+			resultMember = memberService.update(member);
+			returnData = new NetworkData<Member>("member/update", resultMember);
 			break;
 		case "delete":
 			resultInt = memberService.delete(member);
@@ -94,6 +94,11 @@ public class MainRouter {
 		case "frdList":
 			ArrayList<Member> list = memberService.frdList(member);
 			returnData = new NetworkData<ArrayList<Member>>("member/frdList", list);
+			break;
+
+		case "findId":
+			ArrayList<Member> list2 = memberService.findId(member);
+			returnData = new NetworkData<ArrayList<Member>>("member/findId", list2);
 			break;
 		}
 		return returnData;
@@ -160,6 +165,10 @@ public class MainRouter {
 		case "findByNo": // 스케줄 번호로 검색
 			schedule = scheduleService.findByNo(schedule.getNo());
 			returnData = new NetworkData<Schedule>("schedule/findByNo", schedule);
+			break;
+		case "findWeek":
+			s = scheduleService.findWeek(member.getNo());
+			returnData = new NetworkData<ArrayList<Schedule>>("schedule/findWeek", s);
 			break;
 		case "update": // 스케줄 수정
 			resultInt = scheduleService.update(schedule);

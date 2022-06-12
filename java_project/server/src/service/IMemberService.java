@@ -15,9 +15,11 @@ public interface IMemberService {
 
 	int join(Member member);
 
-	int update(Member member);
+	Member update(Member member);
 
 	int delete(Member member);
 
 	ArrayList<Member> frdList(Member member);
+
+	ArrayList<Member> findId(Member member);
 }

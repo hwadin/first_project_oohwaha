@@ -13,12 +13,13 @@ import application.SceneLoader;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 import network_dto.NetworkData;
 import service.MemberService;
 import service.ScheduleService;
@@ -30,7 +31,14 @@ public class UserMainController implements Initializable {
 	private Label txtTitle, userName;
 
 	@FXML
+
+	private Button btnCalendar, btnFriend, btnSearch, btnConfig;
+
+	private TextField txtId;
+
+	@FXML
 	private Button btnCalendar, btnFriend, btnSearch;
+
 
 	@FXML
 	private BorderPane borderPane;
@@ -46,6 +54,16 @@ public class UserMainController implements Initializable {
 
 	Calendar cal;
 	ArrayList<VBox> boxList;
+
+	private static Node prevPage;
+
+	public static Node getPrevPage() {
+		return prevPage;
+	}
+
+	public static void setPrevPage(Node node) {
+		UserMainController.prevPage = node;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -66,9 +84,9 @@ public class UserMainController implements Initializable {
 
 		btnCalendar.setOnAction(event -> {
 			AnchorPane monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
-			borderPane.setCenter(monthCal);
 			ScheduleService.setCalendar(monthCal);
 			ScheduleService.setTarget(borderPane);
+			borderPane.setCenter(monthCal);
 		});
 
 		btnFriend.setOnAction(event -> {
@@ -79,12 +97,19 @@ public class UserMainController implements Initializable {
 		});
 
 		btnSearch.setOnAction(ev -> {
-			Popup pop = new Popup();
 			AnchorPane searchIcon = (AnchorPane) Main.sceneLoader.load(SceneLoader.SEARCH_PATH);
-			System.out.println(pop.getContent());
-			pop.getContent().add(searchIcon);
-			pop.setAutoHide(true);
-			pop.show(MainController.stage);
+
+			MemberService.setTarget(searchIcon);
+			Connector.send(new NetworkData<Member>("member/findId", new Member(txtId.getText())));
+
+		});
+
+		btnConfig.setOnAction(ev -> {
+			setPrevPage(borderPane.getCenter());
+			AnchorPane updateMem = (AnchorPane) Main.sceneLoader.load(SceneLoader.UPDATE_PATH);
+			ScheduleService.setCalendar(updateMem);
+			ScheduleService.setTarget(borderPane);
+			borderPane.setCenter(updateMem);
 		});
 
 	}
@@ -104,18 +129,11 @@ public class UserMainController implements Initializable {
 
 		boxList.get(days - 1).setStyle("-fx-background-color:rgba(255,129,129,0.5);");
 
-		int index = 0;
-		for (int i = firstDay; i <= lastDay; i++) {
-			lblList.get(index).setText(Integer.toString(i));
-			index++;
-
-		}
-
 		// DB에서 스케쥴 읽어오게 요청 후 받아온 데이터에 기반하여 스케쥴 항목 추가
 
-//		ScheduleService.setBoxList(boxList);
-
-//		Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
+		ScheduleService.setBoxList(boxList);
+		ScheduleService.setTarget(borderPane);
+		Connector.send(new NetworkData<Member>("schedule/findWeek", Main.loginMember));
 	};
 
 }

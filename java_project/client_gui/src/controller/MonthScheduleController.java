@@ -107,26 +107,29 @@ public class MonthScheduleController implements Initializable {
 				ObservableList<Schedule> tableList = FXCollections.observableArrayList();
 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				for (Schedule s : memberSchedule) {
-					String startDate = sdf.format(s.getStart_time());
-					Timestamp endDate = s.getEnd_time();
-					String title = s.getTitle();
-					String detail = s.getDetail();
-					String day = ((Label) v.getChildren().get(0)).getText();
-					Date vDate;
-					try {
-						vDate = sdf.parse(year + "-" + (month + 1) + "-" + day);
+				String day = ((Label) v.getChildren().get(0)).getText();
+				Date vDate;
+				try {
+					vDate = sdf.parse(year + "-" + (month + 1) + "-" + day);
+
+					for (Schedule s : memberSchedule) {
+						String startDate = sdf.format(s.getStart_time());
+						Timestamp endDate = s.getEnd_time();
+						String title = s.getTitle();
+						String detail = s.getDetail();
+
 						if ((vDate.after(sdf.parse(startDate)) || vDate.equals(sdf.parse(startDate)))
 								&& vDate.before(endDate)) {
 							tableList.add(s);
 						}
 						Timestamp thatDay = new Timestamp(vDate.getTime());
-						Label today = (Label) monthDetail.lookup("#today");
-						today.setText(sdf.format(vDate));
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
 
+					}
+					Label today = (Label) monthDetail.lookup("#today");
+					today.setText(sdf.format(vDate));
+
+				} catch (ParseException e1) {
+					e1.printStackTrace();
 				}
 				table.setItems(tableList);
 
@@ -192,7 +195,6 @@ public class MonthScheduleController implements Initializable {
 		// DB에서 스케쥴 읽어오게 요청 후 받아온 데이터에 기반하여 스케쥴 항목 추가
 
 		ScheduleService.setBoxList(boxList);
-
 		Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
 	};
 

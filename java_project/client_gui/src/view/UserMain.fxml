@@ -12,7 +12,7 @@
    <top>
       <AnchorPane prefHeight="55.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="613.0" layoutY="16.0" />
+            <TextField fx:id="txtId" layoutX="613.0" layoutY="16.0" />
             <Label fx:id="txtTitle" layoutX="38.0" layoutY="7.0" text="WooHwaHa">
                <font>
                   <Font size="36.0" />
@@ -25,6 +25,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button layoutX="579.0" layoutY="17.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="23.0" text="Button" />
          </children>
       </AnchorPane>
    </top>
@@ -35,7 +36,7 @@
             <Button id="btnFrd" fx:id="btnFriend" mnemonicParsing="false" text="" />
             <Button id="btnRsrv" mnemonicParsing="false" text="" />
             <Button id="btnRsrvDetail" mnemonicParsing="false" text="Rsrv" />
-            <Button id="btnCnfg" mnemonicParsing="false" text="" />
+            <Button id="btnCnfg" fx:id="btnConfig" mnemonicParsing="false" text="" />
          </children>
          <BorderPane.margin>
             <Insets />
