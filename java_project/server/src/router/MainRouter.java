@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import network_dto.NetworkData;
 import service.IMemberService;
 import service.IReservationService;
-import service.IScheduleService;
 import service.MemberService;
 import service.ReservationService;
 import service.ScheduleService;
@@ -16,7 +15,7 @@ import vo.Schedule;
 public class MainRouter {
 	static IMemberService memberService = new MemberService();
 	static IReservationService reservationService = new ReservationService();
-	static IScheduleService scheduleService = new ScheduleService();
+	static ScheduleService scheduleService = new ScheduleService();
 
 	public static NetworkData<?> route(NetworkData<?> data) {
 		NetworkData<?> returnData = null;
@@ -76,7 +75,7 @@ public class MainRouter {
 			resultMember = memberService.login(member);
 			returnData = new NetworkData<Member>("member/login", resultMember);
 			break;
-		case "find":
+		case "find": // 아이디로 회원이 존재하는지 검색
 			resultMember = memberService.find(member);
 			returnData = new NetworkData<Member>("member/find", resultMember);
 			break;
@@ -91,6 +90,10 @@ public class MainRouter {
 		case "delete":
 			resultInt = memberService.delete(member);
 			returnData = new NetworkData<Integer>("member/delete", resultInt);
+			break;
+		case "frdList":
+			ArrayList<Member> list = memberService.frdList(member);
+			returnData = new NetworkData<ArrayList<Member>>("member/frdList", list);
 			break;
 		}
 		return returnData;
@@ -133,11 +136,10 @@ public class MainRouter {
 
 	private static NetworkData<?> scheduleRoute(NetworkData<?> data) {
 		NetworkData<?> returnData = null;
-		Schedule resultSchedule = null;
 		Integer resultInt = null;
 		Schedule schedule = null;
 		Member member = null;
-		System.out.println();
+		ArrayList<Schedule> s = null;
 		String action = data.getAction().split("/")[1];
 		System.out.println("scheduleRouter 진입 || action : " + action);
 		if (data.getV() instanceof Schedule) {
@@ -152,17 +154,20 @@ public class MainRouter {
 			returnData = new NetworkData<Integer>("schedule/save", resultInt);
 			break;
 		case "find": // 스케줄 검색
-			ArrayList<Schedule> s = scheduleService.find(member.getNo());
-			returnData = new NetworkData<Schedule>("schedule/find", resultSchedule);
+			s = scheduleService.find(member.getNo());
+			returnData = new NetworkData<ArrayList<Schedule>>("schedule/find", s);
 			break;
-
+		case "findByNo": // 스케줄 번호로 검색
+			schedule = scheduleService.findByNo(schedule.getNo());
+			returnData = new NetworkData<Schedule>("schedule/findByNo", schedule);
+			break;
 		case "update": // 스케줄 수정
 			resultInt = scheduleService.update(schedule);
 			returnData = new NetworkData<Integer>("schedule/update", resultInt);
 			break;
 		case "delete": // 스케줄 삭제
 			resultInt = scheduleService.delete(schedule);
-			returnData = new NetworkData<Integer>("member/delete", resultInt);
+			returnData = new NetworkData<Integer>("schedule/delete", resultInt);
 			break;
 		}
 

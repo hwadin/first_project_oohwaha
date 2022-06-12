@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="150.0" prefWidth="400.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MonthDetailController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="일정" />
+      <TableView fx:id="table" layoutX="14.0" layoutY="36.0" prefHeight="100.0" prefWidth="370.0">
+        <columns>
+            <TableColumn prefWidth="75.0" text="번호" />
+          <TableColumn prefWidth="117.0" text="시작 시각" />
+          <TableColumn prefWidth="175.0" text="일정 제목" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnNew" layoutX="328.0" layoutY="10.0" mnemonicParsing="false" text="새 일정" />
+      <Label id="today" fx:id="today" layoutX="64.0" layoutY="14.0" text="Label" visible="false" />
+   </children>
+</AnchorPane>

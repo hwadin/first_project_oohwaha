@@ -1,23 +1,39 @@
 package router;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import application.Connector;
 import application.Main;
+import application.SceneLoader;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import network_dto.NetworkData;
+import service.MemberService;
+import service.ScheduleService;
 import vo.Member;
+import vo.Schedule;
 
 public class MainRouter {
 	NetworkData<?> data;
 
 	public static Stage stage;
+
+	static MemberService memberService = new MemberService();
+	static ScheduleService scheduleService = new ScheduleService();
 
 	public NetworkData<?> route(NetworkData<?> data) {
 		String action = data.getAction();
@@ -33,21 +49,111 @@ public class MainRouter {
 				login(m);
 				break;
 			case "member/join":
-
+				join(m);
 				break;
 			case "member/find":
-			Popup pop = new Popup();
-			
-			
-			Label lbl = new Label();
-			lbl.setText("존재하는 아이디입니다.");
-			pop.getContent().add(lbl);
-			Platform.runLater(()->{
-				pop.show(stage);	
-			});
+				find(m);
+				break;
+			}
+		} else {
+			String actionClass = action.split("/")[0];
+			switch (actionClass) {
+			case "member":
+				memberRoute(data);
+				break;
+			case "schedule":
+				scheduleRoute(data);
+				break;
 			}
 		}
+
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void scheduleRoute(NetworkData<?> data) {
+		String action = data.getAction().split("/")[1];
+		int result = 0;
+		BorderPane borderPane;
+		AnchorPane monthCal;
+		switch (action) {
+		case "find":
+			ArrayList<Schedule> scheList = (ArrayList<Schedule>) data.getV();
+			scheduleService.getAllSchedule(scheList);
+			borderPane = (BorderPane) ScheduleService.border;
+			monthCal = (AnchorPane) ScheduleService.calendar;
+			Platform.runLater(() -> {
+				borderPane.setCenter(monthCal);
+			});
+			break;
+		case "save":
+			result = (Integer) data.getV();
+			if (result == 1) {
+				Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("일정 등록 실패");
+				alert.setHeaderText("일정 등록에 실패했습니다.");
+				alert.show();
+			}
+			break;
+
+		case "findByNo":
+			Schedule schedule = (Schedule) data.getV();
+			scheduleService.getDetailSchedule(schedule);
+			break;
+		case "update":
+			result = (Integer) data.getV();
+			if (result == 1) {
+//				Connector.send(new NetworkData<Member>("schedule/find", Main.loginMember));
+				monthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
+				borderPane = (BorderPane) ScheduleService.border;
+				ScheduleService.setCalendar(monthCal);
+				Platform.runLater(() -> {
+					borderPane.setCenter(monthCal);
+				});
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("일정 등록 실패");
+				alert.setHeaderText("일정 등록에 실패했습니다.");
+				alert.show();
+			}
+			break;
+		case "delete":
+			result = (Integer) data.getV();
+			if (result == 1) {
+				Platform.runLater(() -> {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("일정 삭제");
+					alert.setHeaderText("일정 삭제 완료.");
+					alert.show();
+					alert.setOnCloseRequest(ev -> {
+						AnchorPane exmonthCal = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHEDULE_PATH);
+						BorderPane exborderPane = (BorderPane) ScheduleService.border;
+						ScheduleService.setCalendar(exmonthCal);
+						exborderPane.setCenter(exmonthCal);
+					});
+				});
+
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("일정 삭제 실패");
+				alert.setHeaderText("일정 등록에 실패했습니다.");
+				alert.show();
+			}
+			break;
+		}
+
+	}
+
+	private void memberRoute(NetworkData<?> data) {
+		String action = data.getAction().split("/")[1];
+		switch (action) {
+		case "frdList":
+			ArrayList<Member> frdList = (ArrayList<Member>) data.getV();
+			memberService.frdList(frdList);
+			break;
+		}
 	}
 
 	private void login(Member member) {
@@ -62,15 +168,37 @@ public class MainRouter {
 		}
 	}
 	
+	private void join(Member m) {
+		if(m==null) {
+			Platform.runLater(()->{
+    			Alert alert=new Alert(AlertType.INFORMATION);
+    			alert.setHeaderText("성공적으로 회원가입되었습니다.");
+    			alert.show();	
+    		});
+		}else {
+			Platform.runLater(()->{
+    			Alert alert=new Alert(AlertType.INFORMATION);
+    			alert.setHeaderText("이미 존재하는 회원입니다.");
+    			alert.show();	
+		});
+	}
+}
 	private void find(Member member) {
-		Main.loginMember= member;
-		try {
-			AnchorPane join = FXMLLoader.load(getClass().getResource("../view/Join.fxml"));
-			Platform.runLater(() -> {
-				stage.setScene(new Scene(userMain));
+		if(member==null) {	
+    		Platform.runLater(()->{
+    			Alert alert=new Alert(AlertType.INFORMATION);
+    			alert.setHeaderText("사용가능한 아이디입니다.");
+    			alert.show();	
+    		});
+			
+		}else{
+			Platform.runLater(()->{
+				Alert alert=new Alert(AlertType.ERROR);
+				alert.setHeaderText("중복된 아이디입니다.");
+				alert.show();	
 			});
-		} catch (IOException e) {
-			e.printStackTrace();
+				
 		}
+
 	}
 }

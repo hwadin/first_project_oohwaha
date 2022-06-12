@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="600.0" prefWidth="978.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.MainController">
+<BorderPane prefHeight="600.0" prefWidth="978.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <center>
       <VBox alignment="BOTTOM_CENTER" maxHeight="278.0" maxWidth="300.0" prefHeight="278.0" prefWidth="300.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="54.0" prefWidth="300.0" text="TITLE">
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="300.0" text="WooHwaHa">
                <font>
                   <Font name="Microsoft Sans Serif" size="36.0" />
                </font>
@@ -22,7 +21,7 @@
             </Label>
             <Pane prefHeight="60.0" />
             <TextField fx:id="userid" maxHeight="35.0" maxWidth="210.0" prefHeight="35.0" prefWidth="210.0" />
-            <TextField fx:id="userpw" maxHeight="35.0" maxWidth="210.0" prefHeight="35.0" prefWidth="210.0" />
+            <PasswordField fx:id="userpw" maxHeight="35.0" maxWidth="210.0" prefHeight="35.0" prefWidth="210.0" />
             <Button fx:id="btnLogin" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" text="로그인" />
             <Hyperlink fx:id="btnJoin" text="회원이 아니라면?" />
          </children>

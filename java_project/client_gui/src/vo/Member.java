@@ -35,6 +35,12 @@ public class Member implements Serializable {
 		this.pw = pw;
 	}
 
+	public Member(int no, String id, String pw) {
+		this.no = no;
+		this.id = id;
+		this.pw = pw;
+	}
+
 	public Member(String id, String pw, String name, int age, String addr, boolean isOwner) {
 		this.id = id;
 		this.pw = pw;

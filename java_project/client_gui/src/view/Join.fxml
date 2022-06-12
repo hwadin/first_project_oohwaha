@@ -62,11 +62,7 @@
       <ComboBox fx:id="comboPublic1" layoutX="383.0" layoutY="418.0" prefHeight="23.0" prefWidth="108.0" promptText="광역시">
       	<items>
       		<FXCollections fx:factory="observableArrayList">
-      			<String fx:value="서울" />
-      			<String fx:value="경기" />
-      			<String fx:value="부산" />
-      			<String fx:value="경남" />
-      			<String fx:value="경북" />
+      			<String fx:value="부산시" />
       		</FXCollections>
       	</items>
       </ComboBox>
