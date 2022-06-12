@@ -12,12 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
-<<<<<<< HEAD
+
 import javafx.scene.control.TextArea;
 
-=======
+
 import javafx.scene.layout.AnchorPane;
->>>>>>> refs/remotes/master/master
+
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -53,19 +53,9 @@ public class MainRouter {
 				join(m);
 				break;
 			case "member/find":
-<<<<<<< HEAD
+
 				find(m);
 				break;
-=======
-				Popup pop = new Popup();
-
-				Label lbl = new Label();
-				lbl.setText("존재하는 아이디입니다.");
-				pop.getContent().add(lbl);
-				Platform.runLater(() -> {
-					pop.show(stage);
-				});
->>>>>>> refs/remotes/master/master
 			}
 		} else {
 			String actionClass = action.split("/")[0];
