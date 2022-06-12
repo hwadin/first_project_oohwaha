@@ -19,6 +19,8 @@ public class SceneLoader {
 	public final static String M_SCHE_DETAIL_PATH = "../view/MonthDetail.fxml";
 	public final static String NEW_SCHE_PATH = "../view/NewSchedule.fxml";
 
+	public final static String UPDATE_PATH = "../view/UpdateMember.fxml";
+
 	public SceneLoader() {
 //		join = (AnchorPane) load("../view/Join.fxml");
 //		userMain = (BorderPane) load("../view/UserMain.fxml");

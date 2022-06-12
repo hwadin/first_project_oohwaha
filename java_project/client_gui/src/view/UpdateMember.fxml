@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="458.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateMemberController">
+   <children>
+      <Label layoutX="27.0" layoutY="24.0" text="회원 정보 수정">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button id="btnCancel" fx:id="btnCancel" layoutX="560.0" layoutY="392.0" mnemonicParsing="false" prefWidth="85.0" text="취소" />
+      <Button id="btnAccept" fx:id="btnAccept" layoutX="560.0" layoutY="358.0" mnemonicParsing="false" prefWidth="85.0" text="수정" />
+      <Button id="btnDelete" fx:id="btnDelete" layoutX="30.0" layoutY="392.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="105.0" text="탈퇴하기" />
+      <Separator layoutX="27.0" layoutY="375.0" prefHeight="3.0" prefWidth="433.0" />
+      <ComboBox fx:id="comboPublic2" layoutX="241.0" layoutY="335.0" prefHeight="23.0" prefWidth="108.0" promptText="구">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="강서구" />
+               <String fx:value="남구" />
+               <String fx:value="동래구" />
+               <String fx:value="북구" />
+               <String fx:value="수영구" />
+               <String fx:value="해운대구" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="comboPublic1" layoutX="117.0" layoutY="335.0" prefHeight="23.0" prefWidth="108.0" promptText="광역시">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="부산시" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Label alignment="CENTER" layoutX="31.0" layoutY="337.0" text="거주지역" />
+      <TextField id="age" fx:id="age" alignment="CENTER" layoutX="114.0" layoutY="288.0" prefHeight="23.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="31.0" layoutY="292.0" text="나이" />
+      <TextField id="name" fx:id="name" alignment="CENTER" layoutX="114.0" layoutY="241.0" prefHeight="23.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="31.0" layoutY="243.0" text="이름" />
+      <PasswordField id="pwchk" fx:id="pwchk" alignment="CENTER" layoutX="117.0" layoutY="191.0" prefHeight="23.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="30.0" layoutY="195.0" text="비밀번호확인" />
+      <PasswordField id="pw" fx:id="pw" alignment="CENTER" layoutX="116.0" layoutY="145.0" prefHeight="23.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="29.0" layoutY="147.0" text="비밀번호" />
+      <TextField id="id" fx:id="id" alignment="CENTER" layoutX="114.0" layoutY="99.0" prefHeight="23.0" prefWidth="235.0" />
+      <Label alignment="CENTER" layoutX="30.0" layoutY="101.0" text="ID" />
+      <RadioButton id="radioIsOwner" fx:id="radioIsOwner" layoutX="114.0" layoutY="67.0" selected="true" text="일반회원">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup>
+      </RadioButton>
+      <Label id="txtpwchk" fx:id="txtpwchk" layoutX="384.0" layoutY="195.0" prefHeight="15.0" prefWidth="157.0" text="비밀번호 확인." />
+   </children>
+   <padding>
+      <Insets left="30.0" top="30.0" />
+   </padding>
+</AnchorPane>

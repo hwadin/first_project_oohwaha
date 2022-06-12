@@ -94,7 +94,7 @@ public class MemberDAO implements IMemberDAO {
 	}
 
 	@Override
-	public int update(Member member) {
+	public Member update(Member member) {
 		int result = 0;
 		conn = DBHelper.getConnection();
 		String query = "update member set pw=?, age=?, addr=? where id=?";
@@ -111,7 +111,10 @@ public class MemberDAO implements IMemberDAO {
 		} finally {
 			DBHelper.close(pstmt);
 		}
-		return result;
+		if (result == 1) {
+			return member;
+		}
+		return null;
 	}
 
 	@Override

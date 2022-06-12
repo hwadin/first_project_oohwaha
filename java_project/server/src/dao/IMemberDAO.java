@@ -15,7 +15,7 @@ public interface IMemberDAO {
 
 	Member findByIdAndPw(String id, String pw);
 
-	int update(Member member);
+	Member update(Member member);
 
 	int delete(Member member);
 

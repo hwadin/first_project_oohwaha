@@ -41,10 +41,13 @@ public class MemberService implements IMemberService {
 	}
 
 	@Override
-	public int update(Member member) {
+	public Member update(Member member) {
 		System.out.println("memberService.update() 진입");
-		int result = dao.update(member);
-		return result;
+		Member m = dao.update(member);
+		if (m != null) {
+			return m;
+		}
+		return null;
 	}
 
 	@Override
