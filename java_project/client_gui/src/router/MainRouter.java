@@ -81,9 +81,8 @@ public class MainRouter {
 			ArrayList<Schedule> scheList = (ArrayList<Schedule>) data.getV();
 			scheduleService.getAllSchedule(scheList);
 			borderPane = (BorderPane) ScheduleService.border;
-			monthCal = (AnchorPane) ScheduleService.calendar;
 			Platform.runLater(() -> {
-				borderPane.setCenter(monthCal);
+				stage.setScene(borderPane.getScene());
 			});
 			break;
 		case "save":
@@ -96,6 +95,14 @@ public class MainRouter {
 				alert.setHeaderText("일정 등록에 실패했습니다.");
 				alert.show();
 			}
+			break;
+		case "findWeek":
+			ArrayList<Schedule> scheWeekList = (ArrayList<Schedule>) data.getV();
+			scheduleService.getWeekSchedule(scheWeekList);
+			borderPane = (BorderPane) ScheduleService.border;
+			Platform.runLater(() -> {
+				stage.setScene(borderPane.getScene());
+			});
 			break;
 
 		case "findByNo":
