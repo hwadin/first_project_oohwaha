@@ -43,6 +43,7 @@ public class FriendListController implements Initializable {
 					no = member.getNo();
 					id = member.getId();
 					name = member.getName();
+					age = member.getAge();
 					addr = member.getAddr();
 					frd_no.setText(Integer.toString(no));
 					frd_id.setText(id);

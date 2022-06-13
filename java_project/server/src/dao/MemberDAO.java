@@ -153,7 +153,7 @@ public class MemberDAO implements IMemberDAO {
 			pstmt.setInt(2, member.getNo());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(5), rs.getString(6));
+				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getInt(5), rs.getString(6));
 				frdList.add(member);
 			}
 		} catch (SQLException e) {
