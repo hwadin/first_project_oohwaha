@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import vo.FrndList;
 import vo.Member;
 
 // DBHelper 사용해서 DB 접근해서 CRUD(Create, Read, Update, Delete)기능
@@ -24,12 +25,14 @@ public interface IMemberDAO {
 
 	ArrayList<Member> findId(Member member);
 
-
 	Collection<? extends Object> getFrndAlert(Member member);
 
 	Collection<? extends Object> getInviteAlert(Member member);
 
 	int frdAdd(int no, int no2);
 
+	int frdAccept(FrndList frndList);
+
+	int frdReject(FrndList frndList);
 
 }

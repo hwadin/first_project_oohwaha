@@ -141,11 +141,14 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public ArrayList<Member> frdList(Member member) {
 		ArrayList<Member> frdList = new ArrayList<>();
-		String sql = "SELECT  frd.friend, mem.id, mem.name FROM frndlist frd, member mem where frd.friend = mem.no and member=? AND frd.is_invited = true;";
+		String sql = "SELECT  frd.friend, mem.id, mem.name FROM frndlist frd, member mem where frd.friend = mem.no and member=? AND frd.is_invited = true\r\n"
+				+ "union \r\n"
+				+ "select frd.member, mem.id, mem.name from frndlist frd, member mem where frd.member=mem.no and friend=? and frd.is_invited=true";
 		conn = DBHelper.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, member.getNo());
+			pstmt.setInt(2, member.getNo());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(3));
@@ -183,7 +186,7 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public Collection<? extends Object> getFrndAlert(Member member) {
 		ArrayList<FrndList> frdList = new ArrayList<>();
-		String sql = "SELECT frndlist.*, member.id, member.name from frndlist, member where frndlist.friend = member.no and friend = ? and is_invited = false";
+		String sql = "SELECT frndlist.*, member.id, member.name from frndlist, member where frndlist.member = member.no and friend = ? and is_invited = false";
 		conn = DBHelper.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -205,7 +208,7 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public Collection<? extends Object> getInviteAlert(Member member) {
 		ArrayList<InviteList> inviteList = new ArrayList<>();
-		String sql = "SELECT invitelist.*, member.id, member.name from invitelist, member where invitelist.participant= member.no and participant = ? and is_invited = false";
+		String sql = "SELECT invitelist.*, member.id, member.name from invitelist, member where invitelist.member= member.no and participant = ? and is_invited = false";
 		conn = DBHelper.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -222,16 +225,29 @@ public class MemberDAO implements IMemberDAO {
 			DBHelper.close(rs, pstmt);
 		}
 		return inviteList;
+	}
 
 	public int frdAdd(int no, int no2) {
 		int result = 0;
 		conn = DBHelper.getConnection();
-		String sql = "INSERT INTO frndlist(member,friend) VALUES(?,?)";
+
+		String sql = "select * from frndlist where (member=? and friend=?) or (friend=? and member=?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			pstmt.setInt(2, no2);
-			result = pstmt.executeUpdate();
+			pstmt.setInt(3, no);
+			pstmt.setInt(4, no2);
+
+			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				sql = "INSERT INTO frndlist(member,friend) VALUES(?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				pstmt.setInt(2, no2);
+				result = pstmt.executeUpdate();
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -240,6 +256,44 @@ public class MemberDAO implements IMemberDAO {
 
 		return result;
 
+	}
+
+	@Override
+	public int frdAccept(FrndList frndList) {
+		int result = 0;
+		conn = DBHelper.getConnection();
+		String query = "update frndlist set is_invited=true where no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, frndList.getNo());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(pstmt);
+		}
+		System.out.println("frdAccept: " + result);
+		return result;
+	}
+
+	@Override
+	public int frdReject(FrndList frndList) {
+		int result = 0;
+		conn = DBHelper.getConnection();
+		String query = "delete from frndlist where no=? and is_invited = false";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, frndList.getNo());
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(pstmt);
+		}
+
+		return result;
 	}
 
 }

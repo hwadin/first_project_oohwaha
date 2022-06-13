@@ -74,7 +74,7 @@ public class UserMainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		boxList = new ArrayList<>(Arrays.asList(box1, box2, box3, box4, box5, box6, box7));
-
+		alertCount.setVisible(false);
 		drawCal();
 		drawAlert();
 
@@ -157,35 +157,49 @@ public class UserMainController implements Initializable {
 			alertListBox.setPrefWidth(300);
 			alertListBox.setMaxWidth(300);
 			alertListBox.setMinWidth(300);
-			HBox alertItem = new HBox();
-			alertItem.setPadding(new Insets(0, 5, 0, 5));
-			HBox itemText = new HBox();
-			HBox itemBtn = new HBox();
-			alertItem.setAlignment(Pos.CENTER_LEFT);
-			alertItem.setMinHeight(40);
-			alertItem.setSpacing(5);
-			alertItem.setStyle(
-					"-fx-background-color:white; -fx-border-style:solid; -fx-border-color:skyblue;-fx-font-family:'SLEI Gothic TTF', 'Arial Black';");
-			itemText.setPrefWidth(200);
-			itemBtn.setPrefWidth(100);
-			alertItem.getChildren().addAll(itemText, itemBtn);
-			itemText.setAlignment(Pos.CENTER_LEFT);
-			itemBtn.setAlignment(Pos.CENTER_RIGHT);
-			itemBtn.setSpacing(5);
+
+			HBox alertItem = null;
+			HBox itemText = null;
+			HBox itemBtn = null;
 			if (Main.alertList.size() > 0) {
+//				alertListBox = new VBox();
 				for (Object o : Main.alertList) {
+					alertItem = new HBox();
+					itemText = new HBox();
+					itemBtn = new HBox();
+
+					alertItem.setPadding(new Insets(0, 5, 0, 5));
+					alertItem.setAlignment(Pos.CENTER_LEFT);
+					alertItem.setMinHeight(40);
+					alertItem.setSpacing(5);
+					alertItem.setStyle(
+							"-fx-background-color:white; -fx-border-style:solid; -fx-border-color:skyblue;-fx-font-family:'SLEI Gothic TTF', 'Arial Black';");
+					itemText.setPrefWidth(200);
+					itemBtn.setPrefWidth(100);
+					alertItem.getChildren().addAll(itemText, itemBtn);
+					itemText.setAlignment(Pos.CENTER_LEFT);
+					itemBtn.setAlignment(Pos.CENTER_RIGHT);
+					itemBtn.setSpacing(5);
 					Label alert = new Label();
-					if (o instanceof FrndList) {
-						FrndList frnd = (FrndList) o;
-						alert.setText(frnd.getId() + "(" + frnd.getName() + ")님의 친구 추가");
-					} else if (o instanceof InviteList) {
-						FrndList frnd = (FrndList) o;
-						alert.setText(frnd.getId() + "(" + frnd.getName() + ")님의 모임 초대");
-					}
 					Button accept = new Button(), reject = new Button();
 					accept.setText("수락");
 					reject.setText("거절");
 					Button[] btns = { accept, reject };
+					if (o instanceof FrndList) {
+						FrndList frnd = (FrndList) o;
+						alert.setText(frnd.getId() + "(" + frnd.getName() + ")님의 친구 추가");
+						// 친구 수락
+						accept.setOnAction(ev1 -> {
+							Connector.send(new NetworkData<FrndList>("member/frdAccept", frnd));
+						});
+						// 친구 거절
+						reject.setOnAction(ev2 -> {
+							Connector.send(new NetworkData<FrndList>("member/frdReject", frnd));
+						});
+					} else if (o instanceof InviteList) {
+						FrndList frnd = (FrndList) o;
+						alert.setText(frnd.getId() + "(" + frnd.getName() + ")님의 모임 초대");
+					}
 
 					for (Button b : btns) {
 						b.setStyle(
@@ -198,12 +212,23 @@ public class UserMainController implements Initializable {
 					}
 					itemText.getChildren().add(alert);
 					itemBtn.getChildren().addAll(accept, reject);
+					alertListBox.getChildren().add(alertItem);
 				}
 			} else {
+				itemText = new HBox();
+				alertItem = new HBox();
+				alertItem.setPadding(new Insets(0, 5, 0, 5));
+				alertItem.setAlignment(Pos.CENTER_LEFT);
+				alertItem.setMinHeight(40);
+				alertItem.setSpacing(5);
+				alertItem.setStyle(
+						"-fx-background-color:white; -fx-border-style:solid; -fx-border-color:skyblue;-fx-font-family:'SLEI Gothic TTF', 'Arial Black';");
+				itemText.setPrefWidth(200);
+				itemText.setAlignment(Pos.CENTER_LEFT);
 				itemText.getChildren().add(new Label("알림이 없습니다."));
-
+				alertItem.getChildren().add(itemText);
+				alertListBox.getChildren().add(alertItem);
 			}
-			alertListBox.getChildren().add(alertItem);
 			alertPop.getContent().add(alertListBox);
 			if (alertPop.isShowing()) {
 				alertPop.setAutoHide(false);

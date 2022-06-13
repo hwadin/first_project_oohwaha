@@ -30,6 +30,10 @@ public class Member implements Serializable {
 		this.id = id;
 	}
 
+	public Member(int no) {
+		this.no = no;
+	}
+
 	// 회원 인증용 생성자
 	public Member(String id, String pw) {
 		this.id = id;

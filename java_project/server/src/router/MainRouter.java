@@ -8,6 +8,7 @@ import service.IReservationService;
 import service.MemberService;
 import service.ReservationService;
 import service.ScheduleService;
+import vo.FrndList;
 import vo.Member;
 import vo.Reservation;
 import vo.Schedule;
@@ -71,10 +72,14 @@ public class MainRouter {
 		System.out.println("memberRouter 진입 || action : " + action);
 		Member member = null;
 		ArrayList<Member> frdAddList = null;
+		FrndList frndList = null;
+		ArrayList<Object> alertList = null;
 		if (data.getV() instanceof Member) {
 			member = (Member) data.getV();
-		} else {
+		} else if (data.getV() instanceof ArrayList<?>) {
 			frdAddList = (ArrayList<Member>) data.getV();
+		} else if (data.getV() instanceof FrndList) {
+			frndList = (FrndList) data.getV();
 		}
 		switch (action) {
 		case "login":
@@ -108,12 +113,29 @@ public class MainRouter {
 			break;
 
 		case "alert":
-			ArrayList<Object> alertList = memberService.getAlert(member);
+			alertList = memberService.getAlert(member);
 			returnData = new NetworkData<ArrayList<Object>>("member/alert", alertList);
-      break;
+			break;
 		case "frdAdd":
 			resultInt = memberService.frdAdd(frdAddList);
 			returnData = new NetworkData<Integer>("member/frdAdd", Integer.valueOf(resultInt));
+			break;
+		case "frdAccept":
+			resultInt = memberService.frdAccept(frndList);
+			Member m = new Member(frndList.getFriend());
+			alertList = memberService.getAlert(m);
+			if (resultInt == 1) {
+				System.out.println("친구 수락 후 알림 전송");
+				returnData = new NetworkData<ArrayList<Object>>("member/alert", alertList);
+			}
+			break;
+		case "frdReject":
+			resultInt = memberService.frdReject(frndList);
+			Member m1 = new Member(frndList.getFriend());
+			alertList = memberService.getAlert(m1);
+			if (resultInt == 1) {
+				returnData = new NetworkData<ArrayList<Object>>("member/alert", alertList);
+			}
 			break;
 		}
 		return returnData;
