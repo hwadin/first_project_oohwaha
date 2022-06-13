@@ -24,8 +24,12 @@ public interface IMemberDAO {
 
 	ArrayList<Member> findId(Member member);
 
+
 	Collection<? extends Object> getFrndAlert(Member member);
 
 	Collection<? extends Object> getInviteAlert(Member member);
+
+	int frdAdd(int no, int no2);
+
 
 }

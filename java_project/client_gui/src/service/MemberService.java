@@ -16,7 +16,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
+
 import javafx.stage.Window;
+
 import network_dto.NetworkData;
 import vo.Member;
 
@@ -48,13 +50,19 @@ public class MemberService {
 	public void findId(ArrayList<Member> list) {
 		System.out.println("dddd");
 		AnchorPane findIdPage = (AnchorPane) target;
-		ListView findId = (ListView) findIdPage.getChildren().get(0);
+		System.out.println(target);
+		ListView<String> findId = (ListView<String>) findIdPage.getChildren().get(0);
 		for (Member m : list) {
-//			Platform.runLater(() -> {
-			System.out.println(m.getId());
-			findId.getItems().add(m.getId());
-//			});
+			Platform.runLater(() -> {
+				System.out.println(Thread.currentThread());
+				System.out.println(m.getId());
+				findId.getItems().add(m.getId());
+				findId.getSelectionModel().selectFirst();
+			});
 		}
+		System.out.println(findId.hashCode());
+		System.out.println("findId : " + findId);
+		System.out.println("member" + findId.getItems());
 		Popup pop = new Popup();
 		pop.getContent().add(findIdPage);
 
@@ -95,6 +103,7 @@ public class MemberService {
 		}
 	}
 
+
 	public void getAlert(ArrayList<Object> alertList) {
 		Main.alertList = alertList;
 		Platform.runLater(() -> {
@@ -106,4 +115,5 @@ public class MemberService {
 			}
 		});
 	}
+
 }

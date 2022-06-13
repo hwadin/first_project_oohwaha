@@ -172,12 +172,31 @@ public class MainRouter {
 		case "findId":
 			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
 			memberService.findId(findID);
-
 			break;
+
 
 		case "alert":
 			ArrayList<Object> alertList = (ArrayList<Object>) data.getV();
 			memberService.getAlert(alertList);
+
+		case "frdAdd":
+			int result = (Integer) data.getV();
+			Platform.runLater(() -> {
+				if (result == 1) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("친구 요청");
+					alert.setHeaderText("친구 요청 성공!");
+					alert.setContentText("친구 요청이 완료되었습니다.");
+					alert.show();
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("친구 요청");
+					alert.setHeaderText("친구 요청 실패!");
+					alert.setContentText("친구 요청이 실패하였습니다.");
+					alert.show();
+				}
+			});
+
 		}
 	}
 

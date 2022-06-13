@@ -222,6 +222,24 @@ public class MemberDAO implements IMemberDAO {
 			DBHelper.close(rs, pstmt);
 		}
 		return inviteList;
+
+	public int frdAdd(int no, int no2) {
+		int result = 0;
+		conn = DBHelper.getConnection();
+		String sql = "INSERT INTO frndlist(member,friend) VALUES(?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.setInt(2, no2);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(pstmt);
+		}
+
+		return result;
+
 	}
 
 }
