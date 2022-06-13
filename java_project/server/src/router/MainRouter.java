@@ -100,6 +100,10 @@ public class MainRouter {
 			ArrayList<Member> list2 = memberService.findId(member);
 			returnData = new NetworkData<ArrayList<Member>>("member/findId", list2);
 			break;
+		case "alert":
+			ArrayList<Object> alertList = memberService.getAlert(member);
+			returnData = new NetworkData<ArrayList<Object>>("member/alert", alertList);
+			break;
 		}
 		return returnData;
 	}

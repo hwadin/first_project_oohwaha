@@ -53,4 +53,10 @@
 	-fx-background-repeat:no-repeat;
 }
 
-
+#bell{
+	-fx-pref-width:23;
+	-fx-pref-height:23;
+	-fx-background-image:url(resources/icons/bell2.png);
+	-fx-background-size:100%;
+	-fx-background-repeat:no-repeat;
+}

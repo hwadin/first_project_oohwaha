@@ -17,7 +17,7 @@ public class Server {
 	ServerSocket serverSocket;
 
 	static ExecutorService serverPool;
-	static Hashtable<Member, OutputStream> onlineMembers;
+	public static Hashtable<Member, OutputStream> onlineMembers;
 
 	public static String getIp() {
 		return ip;

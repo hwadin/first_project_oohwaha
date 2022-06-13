@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import util.DBHelper;
+import vo.FrndList;
+import vo.InviteList;
 import vo.Member;
 
 public class MemberDAO implements IMemberDAO {
@@ -175,6 +178,50 @@ public class MemberDAO implements IMemberDAO {
 			DBHelper.close(rs, pstmt);
 		}
 		return findId;
+	}
+
+	@Override
+	public Collection<? extends Object> getFrndAlert(Member member) {
+		ArrayList<FrndList> frdList = new ArrayList<>();
+		String sql = "SELECT frndlist.*, member.id, member.name from frndlist, member where frndlist.friend = member.no and friend = ? and is_invited = false";
+		conn = DBHelper.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getNo());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				FrndList frndList = new FrndList(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getBoolean(4),
+						rs.getString(5), rs.getString(6));
+				frdList.add(frndList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, pstmt);
+		}
+		return frdList;
+	}
+
+	@Override
+	public Collection<? extends Object> getInviteAlert(Member member) {
+		ArrayList<InviteList> inviteList = new ArrayList<>();
+		String sql = "SELECT invitelist.*, member.id, member.name from invitelist, member where invitelist.participant= member.no and participant = ? and is_invited = false";
+		conn = DBHelper.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getNo());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				InviteList invList = new InviteList(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4),
+						rs.getBoolean(5), rs.getString(6), rs.getString(7));
+				inviteList.add(invList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(rs, pstmt);
+		}
+		return inviteList;
 	}
 
 }

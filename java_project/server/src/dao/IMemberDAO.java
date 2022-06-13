@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import vo.Member;
 
@@ -22,5 +23,9 @@ public interface IMemberDAO {
 	ArrayList<Member> frdList(Member member);
 
 	ArrayList<Member> findId(Member member);
+
+	Collection<? extends Object> getFrndAlert(Member member);
+
+	Collection<? extends Object> getInviteAlert(Member member);
 
 }

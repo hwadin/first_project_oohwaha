@@ -71,4 +71,12 @@ public class MemberService implements IMemberService {
 		return list;
 	}
 
+	public ArrayList<Object> getAlert(Member member) {
+		System.out.println("memberService.getAlert() 진입");
+		ArrayList<Object> alertList = new ArrayList<>();
+		alertList.addAll(dao.getFrndAlert(member));
+		alertList.addAll(dao.getInviteAlert(member));
+		return alertList;
+	}
+
 }

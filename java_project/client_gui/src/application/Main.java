@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import controller.MainController;
 import javafx.application.Application;
@@ -15,6 +16,8 @@ import vo.Member;
 public class Main extends Application {
 
 	public static Member loginMember = null;
+	public static ArrayList<Object> alertList = null;
+
 	public static SceneLoader sceneLoader;
 	public static Connector conn;
 
@@ -43,7 +46,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Main.fxml"));
 			BorderPane main = (BorderPane) loader.load();
 			Scene scene = new Scene(main);
-
+			primaryStage.setResizable(false);
 			scene.getStylesheets().add(getClass().getResource("../css/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 
