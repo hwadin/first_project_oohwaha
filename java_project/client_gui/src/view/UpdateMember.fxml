@@ -54,7 +54,7 @@
             <ToggleGroup fx:id="group" />
          </toggleGroup>
       </RadioButton>
-      <Label id="txtpwchk" fx:id="txtpwchk" layoutX="384.0" layoutY="195.0" prefHeight="15.0" prefWidth="157.0" text="비밀번호 확인." />
+      <Label id="txtpwchk" fx:id="txtpwchk" layoutX="384.0" layoutY="195.0" prefHeight="15.0" prefWidth="157.0" text="비밀번호 확인" />
    </children>
    <padding>
       <Insets left="30.0" top="30.0" />
