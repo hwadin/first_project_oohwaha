@@ -24,6 +24,10 @@ public interface IMemberService {
 
 	ArrayList<Member> findId(Member member);
 
+
+	
+	ArrayList<Member> mbList(Member member);
+
 	ArrayList<Object> getAlert(Member member);
 
 	int frdAdd(ArrayList<Member> frdAddList);

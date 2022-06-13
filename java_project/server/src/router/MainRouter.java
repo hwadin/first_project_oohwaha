@@ -215,6 +215,7 @@ public class MainRouter {
 			resultInt = scheduleService.delete(schedule);
 			returnData = new NetworkData<Integer>("schedule/delete", resultInt);
 			break;
+			
 		}
 
 		return returnData;

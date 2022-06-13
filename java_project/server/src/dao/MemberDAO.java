@@ -141,9 +141,11 @@ public class MemberDAO implements IMemberDAO {
 	@Override
 	public ArrayList<Member> frdList(Member member) {
 		ArrayList<Member> frdList = new ArrayList<>();
-		String sql = "SELECT  frd.friend, mem.id, mem.name FROM frndlist frd, member mem where frd.friend = mem.no and member=? AND frd.is_invited = true\r\n"
+
+		String sql = "SELECT   mem.* FROM frndlist frd, member mem where frd.friend = mem.no and member=? AND frd.is_invited = true\r\n"
 				+ "union \r\n"
-				+ "select frd.member, mem.id, mem.name from frndlist frd, member mem where frd.member=mem.no and friend=? and frd.is_invited=true";
+				+ "select  mem.* from frndlist frd, member mem where frd.member=mem.no and friend=? and frd.is_invited=true";
+
 		conn = DBHelper.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -151,7 +153,8 @@ public class MemberDAO implements IMemberDAO {
 			pstmt.setInt(2, member.getNo());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(3));
+				member = new Member(rs.getInt(1), rs.getString(2),
+						rs.getString(3),rs.getInt(5),rs.getString(6));
 				frdList.add(member);
 			}
 		} catch (SQLException e) {
@@ -184,6 +187,24 @@ public class MemberDAO implements IMemberDAO {
 	}
 
 	@Override
+	public ArrayList<Member> mbList(Member member) {
+		ArrayList<Member> mbList = new ArrayList<>();
+		String sql = "SELECT * FROM member WHERE id = ?";
+		try {
+			conn = DBHelper.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				member = new Member(rs.getInt(1), rs.getString(2),
+						rs.getString(3),rs.getInt(4),rs.getString(5));
+				mbList.add(member);}
+		} catch (SQLException e) {		
+		} finally {
+			DBHelper.close(rs,pstmt);
+		}
+		return mbList;
+
 	public Collection<? extends Object> getFrndAlert(Member member) {
 		ArrayList<FrndList> frdList = new ArrayList<>();
 		String sql = "SELECT frndlist.*, member.id, member.name from frndlist, member where frndlist.member = member.no and friend = ? and is_invited = false";
@@ -255,6 +276,7 @@ public class MemberDAO implements IMemberDAO {
 		}
 
 		return result;
+
 
 	}
 
