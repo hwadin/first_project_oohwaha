@@ -1,21 +1,28 @@
 package controller;
 
 import java.net.URL;
+
+import java.util.ResourceBundle;
+
+
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.ResourceBundle;
+
 
 import application.Connector;
 import application.Main;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import network_dto.NetworkData;
 import vo.Member;
+
 
 public class SearchIconController implements Initializable {
 
@@ -34,7 +41,6 @@ public class SearchIconController implements Initializable {
 			alert.setTitle("친구 추가");
 			alert.setHeaderText("친구 추가 요청");
 			alert.setContentText("검색한 친구를 친구 목록에 추가하시겠습니까 ?");
-
 
 			Member member = Main.loginMember;
 

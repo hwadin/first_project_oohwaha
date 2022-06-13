@@ -174,6 +174,11 @@ public class MainRouter {
 			memberService.findId(findID);
 			break;
 
+
+		case "alert":
+			ArrayList<Object> alertList = (ArrayList<Object>) data.getV();
+			memberService.getAlert(alertList);
+
 		case "frdAdd":
 			int result = (Integer) data.getV();
 			Platform.runLater(() -> {
@@ -191,6 +196,7 @@ public class MainRouter {
 					alert.show();
 				}
 			});
+
 		}
 	}
 

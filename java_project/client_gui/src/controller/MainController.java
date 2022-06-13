@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import application.Connector;
@@ -54,7 +55,7 @@ public class MainController implements Initializable {
 
 			System.out.println("id : " + id + ", pw : " + pw);
 			Connector.send(new NetworkData<Member>("member/login", new Member(id, pw)));
-
+			Main.alertList = new ArrayList<>();
 		});
 
 		btnJoin.setOnAction((event) -> {
@@ -62,7 +63,7 @@ public class MainController implements Initializable {
 			System.out.println(stage);
 			MainRouter.stage = stage;
 			stage.setScene(scene);
-			
+
 		});
 
 	}

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<AnchorPane fx:id="Anchor" maxHeight="600.0" maxWidth="978.0" prefHeight="600.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JoinController">
+<AnchorPane stylesheets="@../css/application.css" fx:id="Anchor" maxHeight="600.0" maxWidth="978.0" prefHeight="600.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JoinController">
    <children> 
       <Label alignment="CENTER" layoutX="430.0" layoutY="44.0" prefHeight="60.0" prefWidth="130.0" text="회원가입" textAlignment="CENTER">
          <font>

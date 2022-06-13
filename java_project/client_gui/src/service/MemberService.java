@@ -11,10 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Popup;
+
+import javafx.stage.Window;
+
 import network_dto.NetworkData;
 import vo.Member;
 
@@ -61,11 +65,16 @@ public class MemberService {
 		System.out.println("member" + findId.getItems());
 		Popup pop = new Popup();
 		pop.getContent().add(findIdPage);
+
 		pop.setAutoHide(true);
-		pop.setX(1085);
-		pop.setY(210);
+//		pop.setX(1085);
+//		pop.setY(210);
+		final Window window = MainController.stage.getScene().getWindow();
+		final double x = window.getX() + 622;
+		final double y = window.getY() + 72;
+
 		Platform.runLater(() -> {
-			pop.show(MainController.stage);
+			pop.show(MainController.stage, x, y);
 		});
 	}
 
@@ -92,6 +101,19 @@ public class MemberService {
 				alert.show();
 			});
 		}
+	}
+
+
+	public void getAlert(ArrayList<Object> alertList) {
+		Main.alertList = alertList;
+		Platform.runLater(() -> {
+			Label alertCount = (Label) MainController.stage.getScene().getRoot().lookup("#alertCount");
+			if (alertList.size() != 0) {
+				alertCount.setText(Integer.toString(alertList.size()));
+			} else {
+				alertCount.setVisible(false);
+			}
+		});
 	}
 
 }

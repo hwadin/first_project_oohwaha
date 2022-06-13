@@ -107,6 +107,10 @@ public class MainRouter {
 			returnData = new NetworkData<ArrayList<Member>>("member/findId", list2);
 			break;
 
+		case "alert":
+			ArrayList<Object> alertList = memberService.getAlert(member);
+			returnData = new NetworkData<ArrayList<Object>>("member/alert", alertList);
+      break;
 		case "frdAdd":
 			resultInt = memberService.frdAdd(frdAddList);
 			returnData = new NetworkData<Integer>("member/frdAdd", Integer.valueOf(resultInt));
