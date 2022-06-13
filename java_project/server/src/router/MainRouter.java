@@ -72,6 +72,7 @@ public class MainRouter {
 		System.out.println("memberRouter 진입 || action : " + action);
 		Member member = null;
 		ArrayList<Member> frdAddList = null;
+		ArrayList<Member> frdDeleteList = null;
 		FrndList frndList = null;
 		ArrayList<Object> alertList = null;
 		if (data.getV() instanceof Member) {
@@ -120,6 +121,12 @@ public class MainRouter {
 			resultInt = memberService.frdAdd(frdAddList);
 			returnData = new NetworkData<Integer>("member/frdAdd", Integer.valueOf(resultInt));
 			break;
+
+		case "frdDelete":
+			resultInt = memberService.frdDelete(frdAddList);
+			returnData = new NetworkData<Integer>("member/frdDelete", Integer.valueOf(resultInt));
+			break;
+
 		case "frdAccept":
 			resultInt = memberService.frdAccept(frndList);
 			Member m = new Member(frndList.getFriend());
@@ -215,7 +222,7 @@ public class MainRouter {
 			resultInt = scheduleService.delete(schedule);
 			returnData = new NetworkData<Integer>("schedule/delete", resultInt);
 			break;
-			
+
 		}
 
 		return returnData;

@@ -24,8 +24,6 @@ public interface IMemberService {
 
 	ArrayList<Member> findId(Member member);
 
-
-	
 	ArrayList<Member> mbList(Member member);
 
 	ArrayList<Object> getAlert(Member member);
@@ -35,5 +33,7 @@ public interface IMemberService {
 	int frdAccept(FrndList frndList);
 
 	int frdReject(FrndList frndList);
+
+	int frdDelete(ArrayList<Member> frdDeleteList);
 
 }

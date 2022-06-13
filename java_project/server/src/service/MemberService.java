@@ -109,4 +109,17 @@ public class MemberService implements IMemberService {
 		return result;
 	}
 
+	@Override
+	public int frdDelete(ArrayList<Member> frdDeleteList) {
+		System.out.println("memberService.frdDelete() 진입");
+		System.out.println(frdDeleteList);
+		Member member = frdDeleteList.get(0);
+		Member frnd = frdDeleteList.get(1);
+		System.out.println(member);
+		System.out.println(frnd);
+		int result = dao.frdDelete(member.getNo(), frnd.getNo());
+		System.out.println(result);
+		return result;
+	}
+
 }

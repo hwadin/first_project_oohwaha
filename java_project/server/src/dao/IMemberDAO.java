@@ -37,4 +37,6 @@ public interface IMemberDAO {
 
 	int frdReject(FrndList frndList);
 
+	int frdDelete(int no, int no2);
+
 }
