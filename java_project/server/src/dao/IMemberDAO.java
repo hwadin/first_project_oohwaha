@@ -23,4 +23,6 @@ public interface IMemberDAO {
 
 	ArrayList<Member> findId(Member member);
 
+	int frdAdd(int no, int no2);
+
 }

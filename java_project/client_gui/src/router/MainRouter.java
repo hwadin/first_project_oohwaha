@@ -11,17 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Label;
-
-import javafx.scene.control.TextArea;
-
-
 import javafx.scene.layout.AnchorPane;
-
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import network_dto.NetworkData;
 import service.MemberService;
 import service.ScheduleService;
@@ -177,12 +169,28 @@ public class MainRouter {
 
 			memberService.delete(data);
 
-
 		case "findId":
 			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
 			memberService.findId(findID);
-
 			break;
+
+		case "frdAdd":
+			int result = (Integer) data.getV();
+			Platform.runLater(() -> {
+				if (result == 1) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("친구 요청");
+					alert.setHeaderText("친구 요청 성공!");
+					alert.setContentText("친구 요청이 완료되었습니다.");
+					alert.show();
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("친구 요청");
+					alert.setHeaderText("친구 요청 실패!");
+					alert.setContentText("친구 요청이 실패하였습니다.");
+					alert.show();
+				}
+			});
 		}
 	}
 
@@ -206,37 +214,38 @@ public class MainRouter {
 			});
 		}
 	}
-	
+
 	private void join(Member m) {
-		if(m==null) {
-			Platform.runLater(()->{
-    			Alert alert=new Alert(AlertType.INFORMATION);
-    			alert.setHeaderText("성공적으로 회원가입되었습니다.");
-    			alert.show();	
-    		});
-		}else {
-			Platform.runLater(()->{
-    			Alert alert=new Alert(AlertType.INFORMATION);
-    			alert.setHeaderText("이미 존재하는 회원입니다.");
-    			alert.show();	
-		});
-	}
-}
-	private void find(Member member) {
-		if(member==null) {	
-    		Platform.runLater(()->{
-    			Alert alert=new Alert(AlertType.INFORMATION);
-    			alert.setHeaderText("사용가능한 아이디입니다.");
-    			alert.show();	
-    		});
-			
-		}else{
-			Platform.runLater(()->{
-				Alert alert=new Alert(AlertType.ERROR);
-				alert.setHeaderText("중복된 아이디입니다.");
-				alert.show();	
+		if (m == null) {
+			Platform.runLater(() -> {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("성공적으로 회원가입되었습니다.");
+				alert.show();
 			});
-				
+		} else {
+			Platform.runLater(() -> {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("이미 존재하는 회원입니다.");
+				alert.show();
+			});
+		}
+	}
+
+	private void find(Member member) {
+		if (member == null) {
+			Platform.runLater(() -> {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setHeaderText("사용가능한 아이디입니다.");
+				alert.show();
+			});
+
+		} else {
+			Platform.runLater(() -> {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("중복된 아이디입니다.");
+				alert.show();
+			});
+
 		}
 
 	}
