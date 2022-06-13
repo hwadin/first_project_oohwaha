@@ -173,7 +173,7 @@ public class MainRouter {
 			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
 			memberService.findId(findID);
 			break;
-		
+
 		case "mbList":
 			ArrayList<Member> MbList = (ArrayList<Member>) data.getV();
 			memberService.mbList(MbList);
@@ -197,6 +197,27 @@ public class MainRouter {
 					alert.setTitle("친구 요청");
 					alert.setHeaderText("친구 요청 실패!");
 					alert.setContentText("친구 요청이 실패하였습니다.");
+					alert.show();
+				}
+			});
+
+		case "frdDelete":
+			int result2 = (Integer) data.getV();
+			Platform.runLater(() -> {
+				if (result2 == 1) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("친구 삭제");
+					alert.setHeaderText("친구 삭제 성공!");
+					alert.setContentText("친구 삭제가 완료되었습니다.");
+					alert.show();
+					Platform.runLater(() -> {
+						Connector.send(new NetworkData<Member>("member/frdList", Main.loginMember));
+					});
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("친구 삭제");
+					alert.setHeaderText("친구 삭제 실패!");
+					alert.setContentText("친구 삭제요청이 실패하였습니다.");
 					alert.show();
 				}
 			});

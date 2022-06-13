@@ -319,4 +319,27 @@ public class MemberDAO implements IMemberDAO {
 		return result;
 	}
 
+	@Override
+	public int frdDelete(int no, int no2) {
+		int result = 0;
+		conn = DBHelper.getConnection();
+
+		String sql = "DELETE FROM frndlist where (member=? and friend=?) or (friend=? and member=?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.setInt(2, no2);
+			pstmt.setInt(3, no);
+			pstmt.setInt(4, no2);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(pstmt);
+		}
+
+		return result;
+
+	}
+
 }
