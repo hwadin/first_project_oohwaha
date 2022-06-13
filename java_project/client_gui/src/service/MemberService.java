@@ -23,9 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
-
 import javafx.stage.Window;
-
 import network_dto.NetworkData;
 import vo.Member;
 
@@ -168,12 +166,13 @@ public class MemberService {
 		}
 	}
 
-
 	public void getAlert(ArrayList<Object> alertList) {
-		Main.alertList = alertList;
+		Main.alertList = new ArrayList<>();
+		Main.alertList.addAll(alertList);
 		Platform.runLater(() -> {
 			Label alertCount = (Label) MainController.stage.getScene().getRoot().lookup("#alertCount");
 			if (alertList.size() != 0) {
+				alertCount.setVisible(true);
 				alertCount.setText(Integer.toString(alertList.size()));
 			} else {
 				alertCount.setVisible(false);

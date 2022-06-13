@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.IMemberDAO;
 import dao.MemberDAO;
+import vo.FrndList;
 import vo.Member;
 
 public class MemberService implements IMemberService {
@@ -85,6 +86,7 @@ public class MemberService implements IMemberService {
 		alertList.addAll(dao.getFrndAlert(member));
 		alertList.addAll(dao.getInviteAlert(member));
 		return alertList;
+	}
 
 	@Override
 	public int frdAdd(ArrayList<Member> frdAddList) {
@@ -95,6 +97,18 @@ public class MemberService implements IMemberService {
 		return result;
 
 
+	}
+
+	@Override
+	public int frdAccept(FrndList frndList) {
+		int result = dao.frdAccept(frndList);
+		return result;
+	}
+
+	@Override
+	public int frdReject(FrndList frndList) {
+		int result = dao.frdReject(frndList);
+		return result;
 	}
 
 }

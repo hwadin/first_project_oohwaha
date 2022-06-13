@@ -25,7 +25,6 @@ public class Main extends Application {
 		conn = new Connector();
 		conn.connect();
 		sceneLoader = new SceneLoader();
-
 	}
 
 	@Override

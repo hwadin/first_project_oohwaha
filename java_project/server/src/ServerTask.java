@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import network_dto.NetworkData;
 import router.MainRouter;
@@ -41,6 +43,12 @@ public class ServerTask implements Runnable {
 					loginMember = null;
 					continue;
 				}
+				Member frd = null;
+				if (data.getAction().equals("member/frdAdd")) {
+					ArrayList<Member> frdAddList = (ArrayList<Member>) data.getV();
+					frd = frdAddList.get(1);
+				}
+
 				NetworkData<?> returnData = MainRouter.route(data);
 				if (returnData.getAction().equals("member/login") && returnData.getV() != null) {
 					Member m = (Member) returnData.getV();
@@ -50,10 +58,23 @@ public class ServerTask implements Runnable {
 				}
 				if (returnData.getAction().equals("alert")) {
 					try {
-						Thread.sleep(100);
+						Thread.sleep(200);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+				}
+				if (returnData.getAction().equals("member/frdAdd") && ((Integer) returnData.getV()) == 1) {
+					NetworkData<?> frdData = MainRouter.route(new NetworkData<Member>("member/find", frd));
+					frd = (Member) frdData.getV();
+					OutputStream os = Server.onlineMembers.get(frd);
+					ObjectOutputStream frdOs = new ObjectOutputStream(new BufferedOutputStream(os));
+					System.out.println("contains :" + Server.onlineMembers.containsKey(frd));
+					System.out.println("frd :" + frd);
+					frdData = MainRouter.route(new NetworkData<Member>("member/alert", frd));
+					System.out.println("frdData : " + frdData);
+					System.out.println("os : " + os);
+					frdOs.writeObject(frdData);
+					frdOs.flush();
 				}
 				send(returnData);
 			} catch (ClassNotFoundException e) {

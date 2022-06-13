@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 
+import vo.FrndList;
 import vo.Member;
 
 // MemberDAO 활용한 Member 관련 기능
@@ -23,12 +24,16 @@ public interface IMemberService {
 
 	ArrayList<Member> findId(Member member);
 
+
 	
 	ArrayList<Member> mbList(Member member);
-
 
 	ArrayList<Object> getAlert(Member member);
 
 	int frdAdd(ArrayList<Member> frdAddList);
+
+	int frdAccept(FrndList frndList);
+
+	int frdReject(FrndList frndList);
 
 }
