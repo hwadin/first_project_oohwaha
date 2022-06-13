@@ -23,4 +23,6 @@ public interface IMemberDAO {
 
 	ArrayList<Member> findId(Member member);
 
+	ArrayList<Member> mbList(Member member);
+
 }

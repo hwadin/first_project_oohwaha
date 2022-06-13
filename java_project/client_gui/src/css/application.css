@@ -53,4 +53,9 @@
 	-fx-background-repeat:no-repeat;
 }
 
+.det_tbl-column{
+	-fx-alignment: CENTER-RIGHT;
+}
+
+
 

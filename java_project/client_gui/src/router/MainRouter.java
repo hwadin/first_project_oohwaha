@@ -176,12 +176,16 @@ public class MainRouter {
 		case "delete":
 
 			memberService.delete(data);
-
+			break;
 
 		case "findId":
 			ArrayList<Member> findID = (ArrayList<Member>) data.getV();
 			memberService.findId(findID);
-
+			break;
+		
+		case "mbList":
+			ArrayList<Member> MbList = (ArrayList<Member>) data.getV();
+			memberService.mbList(MbList);
 			break;
 		}
 	}

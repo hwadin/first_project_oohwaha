@@ -71,4 +71,11 @@ public class MemberService implements IMemberService {
 		return list;
 	}
 
+	@Override
+	public ArrayList<Member> mbList(Member member) {
+		System.out.println("memberService.mbList() 진입");
+		ArrayList<Member> list = dao.mbList(member);
+		return list;
+	}
+
 }
