@@ -153,8 +153,7 @@ public class MemberDAO implements IMemberDAO {
 			pstmt.setInt(2, member.getNo());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				member = new Member(rs.getInt(1), rs.getString(2),
-						rs.getString(3),rs.getInt(5),rs.getString(6));
+				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(5), rs.getString(6));
 				frdList.add(member);
 			}
 		} catch (SQLException e) {
@@ -196,14 +195,15 @@ public class MemberDAO implements IMemberDAO {
 			pstmt.setString(1, member.getId());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				member = new Member(rs.getInt(1), rs.getString(2),
-						rs.getString(3),rs.getInt(4),rs.getString(5));
-				mbList.add(member);}
-		} catch (SQLException e) {		
+				member = new Member(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5));
+				mbList.add(member);
+			}
+		} catch (SQLException e) {
 		} finally {
-			DBHelper.close(rs,pstmt);
+			DBHelper.close(rs, pstmt);
 		}
 		return mbList;
+	}
 
 	public Collection<? extends Object> getFrndAlert(Member member) {
 		ArrayList<FrndList> frdList = new ArrayList<>();
@@ -276,7 +276,6 @@ public class MemberDAO implements IMemberDAO {
 		}
 
 		return result;
-
 
 	}
 
