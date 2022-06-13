@@ -191,10 +191,12 @@ public class UserMainController implements Initializable {
 						// 친구 수락
 						accept.setOnAction(ev1 -> {
 							Connector.send(new NetworkData<FrndList>("member/frdAccept", frnd));
+							alertPop.hide();
 						});
 						// 친구 거절
 						reject.setOnAction(ev2 -> {
 							Connector.send(new NetworkData<FrndList>("member/frdReject", frnd));
+							alertPop.hide();
 						});
 					} else if (o instanceof InviteList) {
 						FrndList frnd = (FrndList) o;

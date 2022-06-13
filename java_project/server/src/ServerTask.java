@@ -66,15 +66,17 @@ public class ServerTask implements Runnable {
 				if (returnData.getAction().equals("member/frdAdd") && ((Integer) returnData.getV()) == 1) {
 					NetworkData<?> frdData = MainRouter.route(new NetworkData<Member>("member/find", frd));
 					frd = (Member) frdData.getV();
-					OutputStream os = Server.onlineMembers.get(frd);
-					ObjectOutputStream frdOs = new ObjectOutputStream(new BufferedOutputStream(os));
-					System.out.println("contains :" + Server.onlineMembers.containsKey(frd));
-					System.out.println("frd :" + frd);
-					frdData = MainRouter.route(new NetworkData<Member>("member/alert", frd));
-					System.out.println("frdData : " + frdData);
-					System.out.println("os : " + os);
-					frdOs.writeObject(frdData);
-					frdOs.flush();
+					if (Server.onlineMembers.containsKey(frd)) {
+						OutputStream os = Server.onlineMembers.get(frd);
+						ObjectOutputStream frdOs = new ObjectOutputStream(new BufferedOutputStream(os));
+						System.out.println("contains :" + Server.onlineMembers.containsKey(frd));
+						System.out.println("frd :" + frd);
+						frdData = MainRouter.route(new NetworkData<Member>("member/alert", frd));
+						System.out.println("frdData : " + frdData);
+						System.out.println("os : " + os);
+						frdOs.writeObject(frdData);
+						frdOs.flush();
+					}
 				}
 				send(returnData);
 			} catch (ClassNotFoundException e) {
