@@ -45,7 +45,6 @@ public class MainRouter {
 				join(m);
 				break;
 			case "member/find":
-
 				find(m);
 				break;
 			}

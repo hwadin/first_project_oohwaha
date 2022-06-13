@@ -16,7 +16,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Window;
 import network_dto.NetworkData;
 import service.MemberService;
 import vo.Member;
@@ -37,6 +39,9 @@ public class UpdateMemberController implements Initializable {
 
 	@FXML
 	private ComboBox<String> comboPublic1, comboPublic2;
+	
+	@FXML
+	private ToggleGroup group;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -63,6 +68,14 @@ public class UpdateMemberController implements Initializable {
 
 		radioIsOwner.setDisable(true);
 
+		pwchk.setOnKeyReleased(e->{
+			if(!pw.getText().equals(pwchk.getText())) {
+			txtpwchk.setText("비밀번호가 일치하지 않습니다.");
+		}else {
+			txtpwchk.setText("비밀번호가 일치합니다.");
+			}
+		});
+		
 		btnAccept.setOnAction(ev -> {
 			// 회원정보 수정
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -97,6 +110,6 @@ public class UpdateMemberController implements Initializable {
 				alert.close();
 			}
 		});
-	}
-
+	} // END initialize
+	
 }

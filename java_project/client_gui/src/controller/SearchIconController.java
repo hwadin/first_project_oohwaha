@@ -35,6 +35,7 @@ public class SearchIconController implements Initializable {
 			alert.setHeaderText("친구 추가 요청");
 			alert.setContentText("검색한 친구를 친구 목록에 추가하시겠습니까 ?");
 
+
 			Member member = Main.loginMember;
 
 			Optional<ButtonType> result = alert.showAndWait();
@@ -48,6 +49,7 @@ public class SearchIconController implements Initializable {
 			} else {
 				alert.close();
 			}
+
 		});
 	}
 }
