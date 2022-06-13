@@ -71,9 +71,11 @@ public class UpdateMemberController implements Initializable {
 		pwchk.setOnKeyReleased(e->{
 			if(!pw.getText().equals(pwchk.getText())) {
 			txtpwchk.setText("비밀번호가 일치하지 않습니다.");
+			txtpwchk.setStyle("-fx-text-fill:red");
 		}else {
 			txtpwchk.setText("비밀번호가 일치합니다.");
-			}
+			txtpwchk.setStyle("-fx-text-fill:green");	
+		}
 		});
 		
 		btnAccept.setOnAction(ev -> {

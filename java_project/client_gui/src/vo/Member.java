@@ -3,6 +3,9 @@ package vo;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+
 public class Member implements Serializable {
 
 	/**
@@ -41,6 +44,16 @@ public class Member implements Serializable {
 		this.id = id;
 		this.pw = pw;
 	}
+	
+
+	public Member(int no, String id, String name, int age, String addr) {
+		super();
+		this.no = no;
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.addr = addr;
+	}
 
 	public Member(String id, String pw, String name, int age, String addr, boolean isOwner) {
 		this.id = id;
@@ -50,7 +63,7 @@ public class Member implements Serializable {
 		this.addr = addr;
 		this.isOwner = isOwner;
 	}
-
+	
 	// Getter & Setter
 	public int getNo() {
 		return no;

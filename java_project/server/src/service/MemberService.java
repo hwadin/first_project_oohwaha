@@ -72,6 +72,13 @@ public class MemberService implements IMemberService {
 	}
 
 
+	@Override
+	public ArrayList<Member> mbList(Member member) {
+		System.out.println("memberService.mbList() 진입");
+		ArrayList<Member> list = dao.mbList(member);
+		return list;
+
+
 	public ArrayList<Object> getAlert(Member member) {
 		System.out.println("memberService.getAlert() 진입");
 		ArrayList<Object> alertList = new ArrayList<>();
@@ -86,6 +93,7 @@ public class MemberService implements IMemberService {
 		Member frnd = dao.findById(frdAddList.get(1).getId());
 		int result = dao.frdAdd(member.getNo(), frnd.getNo());
 		return result;
+
 
 	}
 
