@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -19,13 +20,16 @@
                </font>
             </Label>
             <Button fx:id="btnSearch" layoutX="757.0" layoutY="16.0" mnemonicParsing="false" text="Button" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="818.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <Label id="userName" fx:id="userName" layoutX="865.0" layoutY="18.0" text="userName">
+            <Label id="userName" fx:id="userName" layoutX="865.0" layoutY="18.0" text="userName" underline="true">
                <font>
                   <Font size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Button layoutX="579.0" layoutY="17.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="23.0" text="Button" />
+            <Button fx:id="btnAlert" id="bell" layoutX="830.0" layoutY="16.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="23.0" />
+            <Label id="alertCount" fx:id="alertCount" layoutX="814.0" layoutY="20.0" text="10" />
          </children>
       </AnchorPane>
    </top>

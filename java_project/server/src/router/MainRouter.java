@@ -69,7 +69,13 @@ public class MainRouter {
 		System.out.println();
 		String action = data.getAction().split("/")[1];
 		System.out.println("memberRouter 진입 || action : " + action);
-		Member member = (Member) data.getV();
+		Member member = null;
+		ArrayList<Member> frdAddList = null;
+		if (data.getV() instanceof Member) {
+			member = (Member) data.getV();
+		} else {
+			frdAddList = (ArrayList<Member>) data.getV();
+		}
 		switch (action) {
 		case "login":
 			resultMember = memberService.login(member);
@@ -99,6 +105,15 @@ public class MainRouter {
 		case "findId":
 			ArrayList<Member> list2 = memberService.findId(member);
 			returnData = new NetworkData<ArrayList<Member>>("member/findId", list2);
+			break;
+
+		case "alert":
+			ArrayList<Object> alertList = memberService.getAlert(member);
+			returnData = new NetworkData<ArrayList<Object>>("member/alert", alertList);
+      break;
+		case "frdAdd":
+			resultInt = memberService.frdAdd(frdAddList);
+			returnData = new NetworkData<Integer>("member/frdAdd", Integer.valueOf(resultInt));
 			break;
 		}
 		return returnData;

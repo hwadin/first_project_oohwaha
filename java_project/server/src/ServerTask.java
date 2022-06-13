@@ -35,6 +35,12 @@ public class ServerTask implements Runnable {
 				System.out.println("request : " + data);
 
 				// 수신한 데이터를 action에 따른 처리를 위해 MainRouter로 전달
+				if (data.getAction().equals("member/logout")) {
+					Server.onlineMembers.remove(loginMember);
+					System.out.println("현재 로그인한 인원 : " + Server.onlineMembers.size());
+					loginMember = null;
+					continue;
+				}
 				NetworkData<?> returnData = MainRouter.route(data);
 				if (returnData.getAction().equals("member/login") && returnData.getV() != null) {
 					Member m = (Member) returnData.getV();
@@ -42,7 +48,13 @@ public class ServerTask implements Runnable {
 					Server.onlineMembers.put(new Member(m.getNo(), m.getId()), this.client.getOutputStream());
 					System.out.println("현재 로그인한 인원 : " + Server.onlineMembers.size());
 				}
-
+				if (returnData.getAction().equals("alert")) {
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 				send(returnData);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
