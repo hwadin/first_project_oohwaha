@@ -200,7 +200,7 @@ public class MainRouter {
 					alert.show();
 				}
 			});
-
+			break;
 		case "frdDelete":
 			int result2 = (Integer) data.getV();
 			Platform.runLater(() -> {
@@ -221,7 +221,7 @@ public class MainRouter {
 					alert.show();
 				}
 			});
-
+			break;
 		}
 	}
 
