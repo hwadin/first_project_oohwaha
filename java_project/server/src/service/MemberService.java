@@ -71,4 +71,13 @@ public class MemberService implements IMemberService {
 		return list;
 	}
 
+	@Override
+	public int frdAdd(ArrayList<Member> frdAddList) {
+		System.out.println("memberService.frdAdd() 진입");
+		Member member = frdAddList.get(0);
+		Member frnd = dao.findById(frdAddList.get(1).getId());
+		int result = dao.frdAdd(member.getNo(), frnd.getNo());
+		return result;
+	}
+
 }

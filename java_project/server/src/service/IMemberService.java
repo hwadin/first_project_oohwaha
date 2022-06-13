@@ -22,4 +22,6 @@ public interface IMemberService {
 	ArrayList<Member> frdList(Member member);
 
 	ArrayList<Member> findId(Member member);
+
+	int frdAdd(ArrayList<Member> frdAddList);
 }

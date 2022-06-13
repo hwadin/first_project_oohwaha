@@ -33,12 +33,8 @@ public class UserMainController implements Initializable {
 	@FXML
 
 	private Button btnCalendar, btnFriend, btnSearch, btnConfig;
-
-	private TextField txtId;
-
 	@FXML
-	private Button btnCalendar, btnFriend, btnSearch;
-
+	private TextField txtId;
 
 	@FXML
 	private BorderPane borderPane;
