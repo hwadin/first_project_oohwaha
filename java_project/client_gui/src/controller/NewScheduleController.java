@@ -31,7 +31,7 @@ public class NewScheduleController implements Initializable {
 	private TextField txtTitle, txtPlace;
 
 	@FXML
-	private ComboBox startTime, endTime;
+	private ComboBox<String> startTime, endTime;
 
 	@FXML
 	private DatePicker endDate;

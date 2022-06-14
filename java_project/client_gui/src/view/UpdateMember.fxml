@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane
-stylesheets="@../css/application.css"
+stylesheets="/css/application.css" 
  prefHeight="458.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateMemberController">
    <children>
       <Label layoutX="27.0" layoutY="24.0" text="회원 정보 수정">

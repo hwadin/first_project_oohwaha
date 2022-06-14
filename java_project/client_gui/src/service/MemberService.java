@@ -19,8 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Window;
@@ -34,13 +32,14 @@ public class MemberService {
 	public static void setTarget(Parent t) {
 		target = t;
 	}
-	
+
 	public static ArrayList<VBox> boxList;
-	
+
 	public static void setBoxList(ArrayList<VBox> boxList) {
 		MemberService.boxList = boxList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void frdList(ArrayList<Member> list) {
 		System.out.println(list);
 		AnchorPane frdListPage = (AnchorPane) Main.sceneLoader.load(SceneLoader.F_LIST_PATH);
@@ -52,7 +51,7 @@ public class MemberService {
 		frdList.getColumns().add(tableColumn);
 		frdList.setItems(FXCollections.observableArrayList(list));
 		frdList.getSelectionModel().selectFirst();
-	
+
 		Platform.runLater(() -> {
 			if (target instanceof BorderPane) {
 				((BorderPane) target).setCenter(frdListPage);
@@ -60,8 +59,8 @@ public class MemberService {
 		});
 	}
 
+	@SuppressWarnings("unchecked")
 	public void findId(ArrayList<Member> list) {
-		System.out.println("dddd");
 		AnchorPane findIdPage = (AnchorPane) target;
 		System.out.println(target);
 		ListView<String> findId = (ListView<String>) findIdPage.getChildren().get(0);
@@ -90,19 +89,19 @@ public class MemberService {
 			pop.show(MainController.stage, x, y);
 		});
 	}
-	
-	public void mbList(ArrayList<Member> list) {
-		
-		AnchorPane mbListPage = (AnchorPane) Main.sceneLoader.load(SceneLoader.F_LIST_PATH);
-		AnchorPane mbList = (AnchorPane) mbListPage.getChildren().get(0);
-		for(Member m : list) {
-			int No = m.getNo();
-			String ID = m.getId();
-			String name = m.getName();
-			int age= m.getAge();
-			String addr = m.getAddr();
-		}
-	}
+
+//	public void mbList(ArrayList<Member> list) {
+//
+//		AnchorPane mbListPage = (AnchorPane) Main.sceneLoader.load(SceneLoader.F_LIST_PATH);
+//		AnchorPane mbList = (AnchorPane) mbListPage.getChildren().get(0);
+//		for (Member m : list) {
+//			int No = m.getNo();
+//			String ID = m.getId();
+//			String name = m.getName();
+//			int age = m.getAge();
+//			String addr = m.getAddr();
+//		}
+//	}
 
 	public void update(Member member) {
 		Platform.runLater(() -> {

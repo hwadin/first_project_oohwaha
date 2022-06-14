@@ -48,7 +48,7 @@ public class Server {
 			try {
 				Socket client = serverSocket.accept();
 
-				String clientIP = client.getInetAddress().getHostAddress();
+//				String clientIP = client.getInetAddress().getHostAddress();
 				System.out.println("클라이언트 접속 : " + client.getRemoteSocketAddress());
 				new ServerTask(client);
 

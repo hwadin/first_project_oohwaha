@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="978.0" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserMainController">
+<BorderPane fx:id="borderPane" prefHeight="600.0" prefWidth="978.0" stylesheets="/css/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserMainController">
    <top>
       <AnchorPane prefHeight="55.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="txtId" layoutX="613.0" layoutY="16.0" />
-            <Label fx:id="txtTitle" layoutX="38.0" layoutY="7.0" text="WooHwaHa">
+            <Label fx:id="txtTitle" layoutX="38.0" layoutY="7.0" text="모  카">
                <font>
                   <Font size="36.0" />
                </font>

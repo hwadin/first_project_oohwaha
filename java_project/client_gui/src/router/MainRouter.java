@@ -146,6 +146,7 @@ public class MainRouter {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void memberRoute(NetworkData<?> data) {
 		String action = data.getAction().split("/")[1];
 		switch (action) {
@@ -174,10 +175,10 @@ public class MainRouter {
 			memberService.findId(findID);
 			break;
 
-		case "mbList":
-			ArrayList<Member> MbList = (ArrayList<Member>) data.getV();
-			memberService.mbList(MbList);
-			break;
+//		case "mbList":
+//			ArrayList<Member> MbList = (ArrayList<Member>) data.getV();
+//			memberService.mbList(MbList);
+//			break;
 
 		case "alert":
 			ArrayList<Object> alertList = (ArrayList<Object>) data.getV();
@@ -229,7 +230,7 @@ public class MainRouter {
 		if (member != null) {
 			Main.loginMember = member;
 			try {
-				BorderPane userMain = FXMLLoader.load(getClass().getResource("../view/UserMain.fxml"));
+				BorderPane userMain = FXMLLoader.load(getClass().getResource("/view/UserMain.fxml"));
 				Platform.runLater(() -> {
 					stage.setScene(new Scene(userMain));
 				});

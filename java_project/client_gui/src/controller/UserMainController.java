@@ -272,11 +272,11 @@ public class UserMainController implements Initializable {
 			l.setText("");
 		}
 
-		int dayMonth = cal.get(Calendar.DAY_OF_MONTH); // 이번 달의 오늘
+//		int dayMonth = cal.get(Calendar.DAY_OF_MONTH); // 이번 달의 오늘
 		int days = cal.get(Calendar.DAY_OF_WEEK); // 오늘이 현재 주의 몇째 일(1이 일요일, 7이 토요일)
 
-		int firstDay = dayMonth - days + 1; // 이번 달의 첫째 날
-		int lastDay = dayMonth + 7 - days; // 이번 달의 마지막 날
+//		int firstDay = dayMonth - days + 1; // 이번 달의 첫째 날
+//		int lastDay = dayMonth + 7 - days; // 이번 달의 마지막 날
 
 		boxList.get(days - 1).setStyle("-fx-background-color:rgba(255,129,129,0.5);");
 
