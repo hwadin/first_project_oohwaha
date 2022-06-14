@@ -1,7 +1,5 @@
 package controller;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,15 +35,12 @@ public class MainController implements Initializable {
 
 	static Socket server;
 
-	private static ObjectOutputStream req;
-	private static ObjectInputStream res;
-
 	public static Stage stage;
 
 	NetworkData<?> returnData;
 
 	public void setStage(Stage primaryStage) {
-		this.stage = primaryStage;
+		MainController.stage = primaryStage;
 	}
 
 	@Override

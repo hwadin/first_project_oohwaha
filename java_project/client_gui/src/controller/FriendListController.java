@@ -7,8 +7,6 @@ import java.util.ResourceBundle;
 
 import application.Connector;
 import application.Main;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,7 +40,7 @@ public class FriendListController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ObservableList<Member> list = FXCollections.observableArrayList();
+//		ObservableList<Member> list = FXCollections.observableArrayList();
 		tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent click) {

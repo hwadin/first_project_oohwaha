@@ -63,6 +63,7 @@ public class MainRouter {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private static NetworkData<?> memberRoute(NetworkData<?> data) {
 		NetworkData<?> returnData = null;
 		Member resultMember = null;
@@ -72,7 +73,6 @@ public class MainRouter {
 		System.out.println("memberRouter 진입 || action : " + action);
 		Member member = null;
 		ArrayList<Member> frdAddList = null;
-		ArrayList<Member> frdDeleteList = null;
 		FrndList frndList = null;
 		ArrayList<Object> alertList = null;
 		if (data.getV() instanceof Member) {

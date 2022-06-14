@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<AnchorPane stylesheets="@../css/application.css" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewScheduleController">
+<AnchorPane stylesheets="/css/application.css" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewScheduleController">
    <children>
       <Label id="lblTitle" fx:id="lblTitle" layoutX="9.0" layoutY="7.0" text="새 일정">
          <font>

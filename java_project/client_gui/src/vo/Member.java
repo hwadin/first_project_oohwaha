@@ -3,18 +3,12 @@ package vo;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-
 public class Member implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4894236748562299117L;
-	// 가입일 필요?
-	// 탈퇴 회원 테이블 필요?
-	// 비밀번호 암호화
 	private int no;
 	private String id;
 	private String pw;
@@ -48,7 +42,6 @@ public class Member implements Serializable {
 		this.id = id;
 		this.pw = pw;
 	}
-	
 
 	public Member(int no, String id, String name, int age, String addr) {
 		super();
@@ -67,7 +60,7 @@ public class Member implements Serializable {
 		this.addr = addr;
 		this.isOwner = isOwner;
 	}
-	
+
 	// Getter & Setter
 	public int getNo() {
 		return no;

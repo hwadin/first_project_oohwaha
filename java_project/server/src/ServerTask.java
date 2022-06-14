@@ -27,6 +27,7 @@ public class ServerTask implements Runnable {
 	}
 
 	// 스레드풀에 들어갔을 때 실행될 run() 메소드
+	@SuppressWarnings("unchecked")
 	@Override
 	public void run() {
 		while (true) {

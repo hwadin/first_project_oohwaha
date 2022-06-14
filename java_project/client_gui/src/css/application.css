@@ -5,42 +5,42 @@
 #btnCal{
 	-fx-pref-width:30;
 	-fx-pref-height:30;
-	-fx-background-image:url(resources/icons/calendar1.png);
+	-fx-background-image:url(/css/resources/icons/calendar1.png);
 	-fx-background-size:100%;
 }
 
 #btnFrd{
 	-fx-pref-width:30;
 	-fx-pref-height:30;
-	-fx-background-image:url(resources/icons/friends.png);
+	-fx-background-image:url(/css/resources/icons/friends.png);
 	-fx-background-size:100%;
 }
 
 #btnRsrv{
 	-fx-pref-width:30;
 	-fx-pref-height:30;
-	-fx-background-image:url(resources/icons/search.png);
+	-fx-background-image:url(/css/resources/icons/search.png);
 	-fx-background-size:100%;
 }
 
 #btnRsrvDetail{
 	-fx-pref-width:30;
 	-fx-pref-height:30;
-	-fx-background-image:url(resources/icons/calendar1.png);
+	-fx-background-image:url(/css/resources/icons/calendar1.png);
 	-fx-background-size:100%;
 }
 
 #btnCnfg{
 	-fx-pref-width:30;
 	-fx-pref-height:30;
-	-fx-background-image:url(resources/icons/setting4.png);
+	-fx-background-image:url(/css/resources/icons/setting4.png);
 	-fx-background-size:100%;
 }
 
 #btnSearch{
 	-fx-pref-width:23;
 	-fx-pref-height:23;
-	-fx-background-image:url(resources/icons/search3.png);
+	-fx-background-image:url(/css/resources/icons/search3.png);
 	-fx-background-size:90%;
 	-fx-background-repeat:no-repeat;
 }
@@ -48,7 +48,7 @@
 #btnFrdAdd{
 	-fx-pref-width:25;
 	-fx-pref-height:25;
-	-fx-background-image:url(resources/icons/friends5.png);
+	-fx-background-image:url(/css/resources/icons/friends5.png);
 	-fx-background-size:100%;
 	-fx-background-repeat:no-repeat;
 }
@@ -56,7 +56,7 @@
 #bell{
 	-fx-pref-width:23;
 	-fx-pref-height:23;
-	-fx-background-image:url(resources/icons/bell2.png);
+	-fx-background-image:url(/css/resources/icons/bell2.png);
 	-fx-background-size:100%;
 	-fx-background-repeat:no-repeat;
 }

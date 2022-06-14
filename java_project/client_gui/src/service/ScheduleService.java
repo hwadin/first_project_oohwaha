@@ -60,8 +60,8 @@ public class ScheduleService {
 		for (Schedule s : data) {
 			String startDate = sdf.format(s.getStart_time());
 			Timestamp endDate = s.getEnd_time();
-			String title = s.getTitle();
-			String detail = s.getDetail();
+//			String title = s.getTitle();
+//			String detail = s.getDetail();
 
 			for (VBox b : boxList) {
 
@@ -131,8 +131,8 @@ public class ScheduleService {
 		for (Schedule s : data) {
 			String startDate = sdf.format(s.getStart_time());
 			Timestamp endDate = s.getEnd_time();
-			String title = s.getTitle();
-			String detail = s.getDetail();
+//			String title = s.getTitle();
+//			String detail = s.getDetail();
 
 			Date today = new Date();
 			Calendar cal = Calendar.getInstance();

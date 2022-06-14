@@ -63,6 +63,7 @@ public class MonthScheduleController implements Initializable {
 		MonthScheduleController.memberSchedule = memberSchedule;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		boxList = new ArrayList<>(Arrays.asList(box01, box02, box03, box04, box05, box06, box07, box08, box09, box10,
@@ -93,7 +94,7 @@ public class MonthScheduleController implements Initializable {
 
 				AnchorPane monthDetail = (AnchorPane) Main.sceneLoader.load(SceneLoader.M_SCHE_DETAIL_PATH);
 
-				TableView<Schedule> table = (TableView) monthDetail.getChildren().get(1);
+				TableView<Schedule> table = (TableView<Schedule>) monthDetail.getChildren().get(1);
 
 				TableColumn<Schedule, ?> tColumnNo = table.getColumns().get(0);
 				tColumnNo.setCellValueFactory(new PropertyValueFactory<>("no"));
@@ -115,14 +116,14 @@ public class MonthScheduleController implements Initializable {
 					for (Schedule s : memberSchedule) {
 						String startDate = sdf.format(s.getStart_time());
 						Timestamp endDate = s.getEnd_time();
-						String title = s.getTitle();
-						String detail = s.getDetail();
+//						String title = s.getTitle();
+//						String detail = s.getDetail();
 
 						if ((vDate.after(sdf.parse(startDate)) || vDate.equals(sdf.parse(startDate)))
 								&& vDate.before(endDate)) {
 							tableList.add(s);
 						}
-						Timestamp thatDay = new Timestamp(vDate.getTime());
+//						Timestamp thatDay = new Timestamp(vDate.getTime());
 
 					}
 					Label today = (Label) monthDetail.lookup("#today");
